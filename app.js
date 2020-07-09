@@ -10,9 +10,10 @@ function handleStartButtonSubmit() {
   $("#startButton").on("click", function (event) {
     event.preventDefault();
     $("#pageView").html(pageView2)
-    console.log("this is working");
   })
 };
+
+const = 
 
 
 const questionPages = {
@@ -62,6 +63,7 @@ const questionPages = {
       ],
   correctAnswer: "Salt"
     } 
+}
 }
 
 
