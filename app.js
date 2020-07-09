@@ -135,6 +135,8 @@ const questionPages = {
 
 
 
+
+
 let view2Quetions = `<div class="flexgroup">
 
 <main>
