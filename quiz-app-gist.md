@@ -7,21 +7,27 @@ Napkin model of app flow
 
 
 View of starting base
+
 ![view1_layout](https://user-images.githubusercontent.com/65439450/87002509-9ba3fb80-c16e-11ea-9f00-961d3f45064c.png)
 
 View after user clicks next
+
 ![view2_question_layout](https://user-images.githubusercontent.com/65439450/87002518-9e9eec00-c16e-11ea-9885-0266117bf865.png)
 
 View if user answered question correct
+
 ![view3_correct_answer_layout](https://user-images.githubusercontent.com/65439450/87002531-a068af80-c16e-11ea-8fcd-a2e9333bd7df.png)
 
 Vie is user answered question incorrect
+
 ![view3_incorrect_answer_layout](https://user-images.githubusercontent.com/65439450/87002536-a199dc80-c16e-11ea-9735-6d380929fac2.png)
 
 View after user clicks next on last question AND before user clicks restart
+
 ![view4_before_click_layout](https://user-images.githubusercontent.com/65439450/87002537-a2327300-c16e-11ea-9017-d7c4a3fd5810.png)
 
 View after user clicks restart 
+
 ![view5_after_click_layout](https://user-images.githubusercontent.com/65439450/87002538-a2cb0980-c16e-11ea-94a5-e8e75a468619.png)
 
 After this, user should be take back to view of starting base :) 
