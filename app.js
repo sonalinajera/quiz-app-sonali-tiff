@@ -9,10 +9,60 @@ function main() {
 function handleStartButtonSubmit() {
   $("#startButton").on("click", function (event) {
     event.preventDefault();
-    $( "#pageView" ).html(pageView2)
+    $("#pageView").html(pageView2)
     console.log("this is working");
   })
 };
+
+
+const questionPages = {
+  questions: [
+    {
+      question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
+      answers: [
+        "Infancy",
+        "Puberty",
+        "Age 42"
+      ],
+  correctAnswer: "Infancy"
+    },
+    {
+      question: "Sour taste is a good biochemical protective/warning system because...",
+      answers: [
+        "It allows us to detect proton level of acids",
+        "It causes your face to scrunch up ",
+        "It helps create saliva in your mouth"
+      ],
+  correctAnswer: "allows us to detect proton level of acids"
+    },
+    {
+      question: "The ___ of our tongue is sensitive to bitter tastes so we can spit out poisonous or spoiled foods before we swallow them.",
+      answers: [
+        "Back",
+        "Underside",
+        "Front"
+      ],
+  correctAnswer: "Back"
+    },
+    {
+      question: "What is the Japanese coined name for the 5th basic taste meaning ‘savory’?",
+      answers: [
+        "Unagi",
+        "Sarriette",
+        "Umami"
+      ],
+  correctAnswer: "Umami"
+    },
+    {
+      question: "Which substance do we need to consume in order to function correctly?",
+      answers: [
+        "Sugar",
+        "Salt",
+        "Thyme"
+      ],
+  correctAnswer: "Salt"
+    } 
+}
 
 
 
