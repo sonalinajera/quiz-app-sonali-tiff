@@ -6,3 +6,22 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+.flexgroup{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  padding: 10px;
+}
+.flexItem{
+  display: flex;
+  justify-content: center;
+}
+img{
+  max-width: 50%;
+}
+
+h2{
+  font-family: ;
+  font-size: 1em;
+}
