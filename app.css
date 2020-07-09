@@ -42,28 +42,30 @@ figure{
   align-content: center;
 }
 form input {
-  margin-left: 20px;
+  margin-right: 10px;
 }
 
 label {
   color: red;
   display: inline-flex;
-  vertical-align: middle;
 }
 
 button {
 background-color: #d87093;
 color: #3c2109;
 }
+
+/* I feel rather than reletalive we should align the button to the end
+of the form container so it will always be to the left */
 .button {
   position: relative;
   left: 200px;
 }
 
-.button 
-
-footer p {
-  font-size: .8em;
-  display: inline-flex;
-  margin-left: 30px;
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: .7em;
 }
