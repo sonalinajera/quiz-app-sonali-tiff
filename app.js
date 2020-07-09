@@ -134,7 +134,13 @@ const questionPages = {
   ]
 }
 
-
+let images = [
+  'images/cake.png',
+  'images/grapefruit.png',
+  'images/wine.png',
+  'images/sushi.png',
+  'images/popcorn.png'
+]
 
 
 
@@ -143,7 +149,7 @@ let view2Quetions = `<div class="flexgroup">
 
 <main>
 
-  <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
+  <div class="flexItem"><img src="${images[0]}" alt="Orange grapefruit"></div>
   <form>
     <h2>${questionPages.questions[4].question}</h2>
     <label for="infancy">
@@ -169,8 +175,8 @@ let view2Quetions = `<div class="flexgroup">
 </main>
 
 <footer>
-  // counter idea 
-  // <p>${questionPages.answers} === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect}</p>
+  <!-- counter idea // <p>$ curlyBracket questionPages.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
+  
   <p>Correct: 2, Incorrect:1</p>
   <p>${questionPages.questions.indexOf(questionPages.questions[0]) + 1} of ${questionPages.questions.length}</p>
 </footer>
