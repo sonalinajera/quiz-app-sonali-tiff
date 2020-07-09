@@ -141,7 +141,7 @@ let view2Quetions = `<div class="flexgroup">
 
   <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
   <form>
-    <h2>'${questionPages.questions[0]}</h2>
+    <h2>${questionPages.questions[4].question}</h2>
     <label for="infancy">
       <input name="sweet" type="radio" value="infancy">
       it allows us to detect proton level of acids
