@@ -20,6 +20,11 @@ html{
   margin: 20px;
   padding: 10px;
 }
+
+.flexgroupAnswerMargin{
+  margin-top: 50px;
+}
+
 .flexItem{
   display: flex;
   justify-content: center;
@@ -41,6 +46,13 @@ img{
 figure{
   align-content: center;
 }
+
+/* image in view should be hidden until restart is clicked */
+
+.hideImage {
+  display: none;
+}
+
 form input {
   margin-right: 10px;
 }
@@ -48,6 +60,11 @@ form input {
 label {
   color: red;
   display: inline-flex;
+}
+
+.centerAnswers {
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 button {

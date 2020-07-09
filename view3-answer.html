@@ -1,89 +1,141 @@
 <main>
-	<!--plug correct template into a variable-->
-    <!--Correct Template-->
-			<h2>Question just answered</h2>
-      <p>Correct Answer</p>
-       <p>Congrats, you did kermit proud!<p>
-      <button>Next</button>
-      <!-- Inset Kermit meme  -->
-			<img src = "testImage.jpg" alt = ""> 
-      
-      
-      <footer>
-       <p>Question # out of total question</p>
-       <p>Question right out of wrong</p>
-       </footer>
-
-    <!--plug incorrect template into another variable-->
-      <!--Incorrect Template-->
-    <h2>Question just answered</h2>
-      <p>Correct Answer</p>
-       <p>Womp, womp, womp! Better luck next time :/<p>
-      <button>Next</button>
-      <!-- Inset failure meme  -->
-			<img src = "testImage.jpg" alt = "">
-
-    
-     <footer>
-       <p>Question # out of total question</p>
-       <p>Question right out of wrong</p>
-       </footer>
-	</main>
+  <!--plug correct template into a variable-->
+  <!--Correct Template-->
+  <h2>Question just answered</h2>
+  <p>Correct Answer</p>
+  <p>Congrats, you did kermit proud!
+  <p>
+    <button>Next</button>
+    <!-- Inset Kermit meme  -->
+    <img src="testImage.jpg" alt="">
 
 
+  <footer>
+    <p>Question # out of total question</p>
+    <p>Question right out of wrong</p>
+  </footer>
+
+  <!--plug incorrect template into another variable-->
+  <!--Incorrect Template-->
+  <h2>Question just answered</h2>
+  <p>Correct Answer</p>
+  <p>Womp, womp, womp! Better luck next time :/
+  <p>
+    <button>Next</button>
+    <!-- Inset failure meme  -->
+    <img src="testImage.jpg" alt="">
 
 
-  
+  <footer>
+    <p>Question # out of total question</p>
+    <p>Question right out of wrong</p>
+  </footer>
+</main>
+
+
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Quiz App</title>
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet" type="text/css" />
-	<link href="app.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Quiz App</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" rel="stylesheet"
+    type="text/css" />
+  <link href="app.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+  <!--plug correct template into a variable-->
+  <!--Correct Template-->
+  <div class="flexgroup flexgroupAnswerMargin">
 
-	<main>
-	<!--plug correct template into a variable-->
-    <!--Correct Template-->
-			<h2>Question just answered</h2>
-      <p>Correct Answer</p>
-       <p>Congrats, you did kermit proud!<p>
-      <button>Next</button>
-      <!-- Inset Kermit meme  -->
-			<img src = "testImage.jpg" alt = ""> 
-      
-      
-      <footer>
-       <p>Question # out of total question</p>
-       <p>Question right out of wrong</p>
-       </footer>
+    <main>
 
-    <!--plug incorrect template into another variable-->
-      <!--Incorrect Template-->
-    <h2>Question just answered</h2>
-      <p>Correct Answer</p>
-       <p>Womp, womp, womp! Better luck next time :/<p>
-      <button>Next</button>
-      <!-- Inset failure meme  -->
-			<img src = "testImage.jpg" alt = "">
 
-    
-     <footer>
-       <p>Question # out of total question</p>
-       <p>Question right out of wrong</p>
-       </footer>
-	</main>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous">
-	</script>
-	<script src="app.js">
-	</script>
+      <div class="centerAnswers">
+        <div>
+          <h2>Question just answered that might be super long</h2>
+
+          <p>Correct Answer</p>
+        </div>
+
+        <div>
+          <figure>
+            <!-- Inset Kermit meme  -->
+            <img src="images/grapefruit.png" alt="">
+          </figure>
+
+          <p>Congrats, you did kermit proud!</p>
+        </div>
+
+      </div>
+      <button class="button">Next</button>
+
+    </main>
+
+    <footer>
+      <!-- Should update plus 1 not incorrect  -->
+      <p>Correct: 2, Incorrect:1</p>
+      <p>Question 1 of 5</p>
+    </footer>
+
+  </div>
+
+
+  <!-- end of correct answer template -->
+
+  <!--plug incorrect answer template into another variable-->
+  <!--Incorrect answer Template-->
+
+  <div class="flexgroup flexgroupAnswerMargin">
+
+    <main>
+
+      <!--plug incorrect answer template into a variable-->
+      <!--Incorrect Answer given Template-->
+      <div class="centerAnswers">
+        <div>
+          <h2>Question just answered that might be super long</h2>
+          <p> User Answer </p>
+          <p>Correct Answer</p>
+        </div>
+
+        <div>
+          <figure>
+            <!-- Inset failure kermit  meme  -->
+            <img src="images/grapefruit.png" alt="">
+          </figure>
+
+          <p>Womp, womp, womp! Better luck next time :/
+          <p></p>
+        </div>
+
+      </div>
+      <button class="button">Next</button>
+
+
+    </main>
+
+    <footer>
+      <!-- should update incorrect plus one only -->
+      <p>Correct: 2, Incorrect:1</p>
+      <p>Question 1 of 5</p>
+    </footer>
+
+  </div>
+
+  <!-- end of incorrect answer template -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous">
+  </script>
+  <script src="app.js">
+  </script>
 </body>
 
-</html>	
+</html>
