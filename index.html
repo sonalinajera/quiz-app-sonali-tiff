@@ -11,33 +11,43 @@
   <link href="app.css" rel="stylesheet" type="text/css" />
 </head>
 
-<body class="flexgroup">
+<body>
 
-	<main>
-    <div class="flexItem"><img src="images/grapefruit.png" alt = "Orange grapefruit"></div>
-		<form>
-			<h2>Sour taste is a good biochemical protective/warning system because:</h2> 
-      <br>
-      <input name="sweet" type="radio" value="infancy">
-      <label for="infancy">Infancy</label>
-      <br>
-      <input name="sweet" type="radio" value="puberty">
-      <label for="puberty">Puberty</label>
-      <br>
-      <input name="sweet" type="radio" value="age42">
-      <label for="age42">Age 42</label>
-      <br>
-      <button>Next</button>
-    </form>
-     <footer>
-       <p>Question # out of total question</p>
-       <p>Question right out of wrong</p>
-       </footer>
-	</main>
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous">
-	</script>
-	<script src="app.js">
-	</script>
+  <div class="flexgroup">
+
+    <main>
+
+      <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
+      <form>
+        <h2>Sour taste is a good biochemical protective/warning system because:</h2>
+        <input name="sweet" type="radio" value="infancy">
+        <label for="infancy">it allows us to detect proton level of acids</label>
+        <br>
+        <input name="sweet" type="radio" value="puberty">
+        <label for="puberty">scrunches up your face</label>
+        <br>
+        <input name="sweet" type="radio" value="age42">
+        <label for="age42">helps create saliva in your mouth</label>
+        <br>
+        <br>
+        <button class="button">Next</button>
+      </form>
+
+    </main>
+
+    <footer>
+      <p>Question 1 of 5</p>
+      <p>2 wrong, 2 right</p>
+    </footer>
+
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous">
+  </script>
+  <script src="app.js">
+  </script>
+
 </body>
 
 </html>

@@ -6,6 +6,13 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+html{
+  border-left: solid salmon 20px;
+  border-right: solid salmon 20px;
+  margin: 0;
+  height: 100%;
+}
+
 .flexgroup{
   display: flex;
   flex-direction: column;
@@ -17,11 +24,46 @@
   display: flex;
   justify-content: center;
 }
-img{
-  max-width: 50%;
+
+h1 {
+  text-align: center;
 }
 
 h2{
   font-family: ;
-  font-size: 1em;
+  font-size: 1.3em;
+}
+
+img{
+  max-width: 100%;
+}
+
+figure{
+  align-content: center;
+}
+form input {
+  margin-left: 20px;
+}
+
+label {
+  color: red;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+button {
+background-color: #d87093;
+color: #3c2109;
+}
+.button {
+  position: relative;
+  left: 200px;
+}
+
+.button 
+
+footer p {
+  font-size: .8em;
+  display: inline-flex;
+  margin-left: 30px;
 }
