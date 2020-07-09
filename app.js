@@ -1,3 +1,22 @@
+'use strict';
+
+function main(){
+
+
+function handleStartButtonSubmit(){
+  $("#startButton").on("submit", function (event) {
+    event.preventDefault();
+    console.log("this is working");
+  })
+}; // user sees first question
+
+
+
+}
+
+$(main)
+
+
 /**
  * Example store structure
  */
@@ -29,6 +48,19 @@ const store = {
   questionNumber: 0,
   score: 0
 };
+
+// renderQuestion() //pulls view to code
+// generateQuestion() //brings proper question to view
+// countPageNumber() // counts page user is on
+// updateUserScore() // counts total correct vs incorrect
+// checkUserInput() // next button brings user to answer page
+// isAnswerCorrect() // tests checkUserInput() if true return correctAnswerPage else return incorrectAnswerPage
+// correctAnswerPage() // displays html for correct page and calls countPageNumber() & updateUserScore
+// inccorectAnswerPage // displays html for incorrect page and calls countPageNumber() & updateUserScore
+// finalQuestionCheck() // button that determines whether user will move forward to next question or results page
+// displayFinalResults() // user see results view with total score 
+// restartButton() // user can restart quiz 
+
 
 /**
  * 
