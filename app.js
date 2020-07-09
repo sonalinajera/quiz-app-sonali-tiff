@@ -1,20 +1,20 @@
 'use strict';
 
-function main(){
+function main() {
 
-
-function handleStartButtonSubmit(){
-  $("#startButton").on("submit", function (event) {
-    event.preventDefault();
-    console.log("this is working");
-  })
-}; // user sees first question
-
-
+  handleStartButtonSubmit();
 
 }
 
-$(main)
+function handleStartButtonSubmit() {
+  $("#startButton").on("click", function (event) {
+    event.preventDefault();
+    $('#pageView').remove();
+    console.log("this is working");
+  })
+};
+
+
 
 
 /**
@@ -88,3 +88,5 @@ const store = {
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
+
+$(main)
