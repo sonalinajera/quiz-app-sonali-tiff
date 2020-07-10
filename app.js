@@ -4,28 +4,62 @@ function main() {
 
   handleStartButtonSubmit();
   generateQuestion();
-
+  getQuestion();
+  getAnswer();
 }
 
 function handleStartButtonSubmit() {
   $('#startButton').on('click', function (event) {
     event.preventDefault()
-    let questionView2 = 
-    $('#pageView').html(view2Quetions)
+    let questionView2 =
+      $('#pageView').html(view2Quetions)
     console.log("this is working");
   });
 }
 
 
-function generateQuestion(questionsObj, viewObj) {
+function getQuestion() {
+  let quizTemplateArr = questionPages.quizTemplate
+  let questionOnPage= "";
+  let questionNumber = 2;
+  for (let i = 0; i < quizTemplateArr.length; i++) {
+    if (questionNumber === (i + 1)){
+    questionOnPage = quizTemplateArr[i].question}
+  }
+  return(questionOnPage);
+}
 
- let someVar = `<div class="flexgroup">
+function getAnswer() {
+  let quizTemplateArr = questionPages.quizTemplate
+  let answerOnPage= [];
+  let questionNumber = 1;
+  for (let i = 0; i < quizTemplateArr.length; i++) {
+    if (questionNumber === (i + 1)){
+    answerOnPage = quizTemplateArr[i].answers}
+  }
+  return(answerOnPage); //returning arr of answers
 
+  //turn arr into strings 
+  //then return each string with arr of answers
+  //map string into radio buttons
+}
+
+
+// function getOptions(qObj){return inputs and label string  (same object, diff name Diddy Kong)
+// loop Diddy Kong's answers, create inputs in a string and return string 
+// use currentQuestion() to get questionObject OR from parameter
+// }
+
+function generateQuestion(quizTemplateObj, viewObj) {
+  // let options = getOptions(questionsObj)
+  //pass DK thru tubes (DK === parameter & tubes === function)
+  let someVar = `<div class="flexgroup">
 <main>
 
   <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
   <form>
-    <h2>${questionPages.questions[0]}:</h2>
+    <h2>${getQuestion()}</h2>  <--!sub out [0] for variable that is the current question-->
+    <!-- function options()-->
     <label for="infancy">
       <input name="sweet" type="radio" value="infancy">
       it allows us to detect proton level of acids
@@ -33,7 +67,7 @@ function generateQuestion(questionsObj, viewObj) {
     <br>
 
     <label for="puberty">
-      <input name="sweet" type="radio" value="puberty">
+      <input name="sweet" type="radio" value="puberty">  <!--loop thru possible answers that builds this string (includes radio button)-->
       scrunches up your face
     </label>
     <br>
@@ -59,7 +93,7 @@ function generateQuestion(questionsObj, viewObj) {
 </script>
 <script src="app.js">
 </script>`
-console.log('hey there');
+  console.log('hey there');
   // iterate over the array
   // pul; the question and the answers 
 }
@@ -83,9 +117,9 @@ function checkUserInputButton() {
 }
 
 
-
+//data model v
 const questionPages = {
-  questions: [
+  quizTemplate: [
     {
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
       answers: [
@@ -145,10 +179,9 @@ let view2Quetions = `<div class="flexgroup">
 
   <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
   <form>
-    <h2>${questionPages.questions[4].question}</h2>
+    <h2>${getQuestion()}</h2>
     <label for="infancy">
-      <input name="sweet" type="radio" value="infancy">
-      it allows us to detect proton level of acids
+      <input name="infancy" type="radio" value="infancy">infancy
     </label>
     <br>
 
@@ -172,7 +205,7 @@ let view2Quetions = `<div class="flexgroup">
   // counter idea 
   // <p>${questionPages.answers} === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect}</p>
   <p>Correct: 2, Incorrect:1</p>
-  <p>${questionPages.questions.indexOf(questionPages.questions[0]) + 1} of ${questionPages.questions.length}</p>
+  <p>${questionPages.quizTemplate.indexOf(questionPages.quizTemplate[0]) + 1} of ${questionPages.quizTemplate.length}</p>
 </footer>
 
 </div>
