@@ -6,7 +6,7 @@ function main() {
   generateQuestion();
   getQuestion();
   getAnswer();
-  countPageNumber()
+  registerNextQuestions();
 }
 
 function handleStartButtonSubmit() {
@@ -66,13 +66,15 @@ function generateImage() {
   //will show the right image above the question
 }
 
-function countPageNumber() {
-  let pageNumber = null;
+function registerNextQuestions(){
   $('.pageView').on('click', '.button', function (event) {
     event.preventDefault();
-    pageNumber = questionOnPages.quizTemplate[0].questionNumber++;
+    questionPages.quizTemplate[0].questionNumber++;
     })
-    return pageNumber;
+}
+
+function countPageNumber() {
+    return questionPages.quizTemplate[0].questionNumber;
 }
 
 function updateUserScore() {
@@ -90,7 +92,6 @@ function checkUserInputButton() {
 const questionPages = {
   quizTemplate: [
     {
-      questionNumber: 1,
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
       answers: `<label for="infancy">
       <input name="infancy" type="radio" value="infancy">infancy
