@@ -11,40 +11,36 @@ function main() {
 
 function handleStartButtonSubmit() {
   $('#startButton').on('click', function (event) {
-    event.preventDefault()
+    event.preventDefault();
     let questionView2 =
-      $('#pageView').html(view2Quetions)
+      $('#pageView').html(view2Quetions);
     console.log("this is working");
   });
 }
 
 
 function getQuestion() {
-  let quizTemplateArr = questionPages.quizTemplate
-  let questionOnPage = "";
-  let questionNumber = 3;
+  let quizTemplateArr = questionPages.quizTemplate;
+  let questionOnPage = '';
+  let questionNumber = 5;
   for (let i = 0; i < quizTemplateArr.length; i++) {
     if (questionNumber === (i + 1)) {
-      questionOnPage = quizTemplateArr[i].question
+      questionOnPage = quizTemplateArr[i].question;
     }
   }
   return (questionOnPage);
 }
 
 function getAnswer() {
-  let quizTemplateArr = questionPages.quizTemplate
+  let quizTemplateArr = questionPages.quizTemplate;
   let answerOnPage = '';
-  let questionNumber = 1;
+  let questionNumber = 5;
   for (let i = 0; i < quizTemplateArr.length; i++) {
     if (questionNumber === (i + 1)) {
-      answerOnPage = quizTemplateArr[i].answers
+      answerOnPage = quizTemplateArr[i].answers;
     }
   }
-  return (answerOnPage); //returning arr of answers
-
-  //turn arr into strings 
-  //then return each string with arr of answers
-  //map string into radio buttons
+  return (answerOnPage);
 }
 
 
@@ -63,7 +59,15 @@ function generateQuestion(quizTemplateObj, viewObj) {
 }
 
 function generateImage() {
-  //will show the right image above the question
+  let quizTemplateArr = questionPages.quizTemplate;
+  let imageOnPage = '';
+  let questionNumber = 5;
+  for (let i = 0; i < quizTemplateArr.length; i++) {
+    if (questionNumber === (i + 1)) {
+      imageOnPage = quizTemplateArr[i].image;
+    }
+  }
+  return (imageOnPage);
 }
 
 function registerNextQuestions(){
@@ -87,6 +91,8 @@ function checkUserInputButton() {
   // else generate incorrect answer page  
 }
 
+  
+
 
 //data model v
 const questionPages = {
@@ -94,62 +100,109 @@ const questionPages = {
     {
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
       answers: `<label for="infancy">
-      <input name="infancy" type="radio" value="infancy">infancy
+      <input name="sweet" type="radio" value="infancy">Infancy
     </label>
     <br>
 
     <label for="puberty">
       <input name="sweet" type="radio" value="puberty">
-      scrunches up your face
+      Puberty
     </label>
     <br>
     <label for="age42">
       <input name="sweet" type="radio" value="age42">
-      helps create saliva in your mouth
+      Age 42
     </label>
     <br>
     <br>`,
-      correctAnswer: "Infancy"
+      correctAnswer: "Infancy",
+      image: `<img src="images/cake.png" alt="A watercolor drawing of a piece of cake"></div>`
     },
     {
       question: "Sour taste is a good biochemical protective/warning system because...",
-      answers: `THIS IS A TEST `,
-      correctAnswer: "allows us to detect proton level of acids"
+      answers: `<label for="proton">
+      <input name="sour" type="radio" value="proton">It allows us to detect proton level of acids
+    </label>
+    <br>
+
+    <label for="scrunches">
+      <input name="sour" type="radio" value="scrunches">
+      It makes us scrunch up our face
+    </label>
+    <br>
+    <label for="age42">
+      <input name="sour" type="radio" value="age42">
+      It helps create saliva in your mouth
+    </label>
+    <br>
+    <br>`,
+      correctAnswer: "It allows us to detect proton level of acids",
+      image: `<img src="images/grapefruit.png" alt="A water color drawing of a sliced grapefruit"></div>`
     },
     {
       question: "The ___ of our tongue is sensitive to bitter tastes so we can spit out poisonous or spoiled foods before we swallow them.",
-      answers: `ANOTHER TEST`,
-      correctAnswer: "Back"
+      answers: `<label for="back">
+      <input name="bitter" type="radio" value="back">Back
+    </label>
+    <br>
+
+    <label for="underside">
+      <input name="bitter" type="radio" value="underside">
+     Underside
+    </label>
+    <br>
+    <label for="front">
+      <input name="bitter" type="radio" value="front">
+      front    
+    </label>
+    <br>
+    <br>`,
+      correctAnswer: "Back",
+      image: `<img src="images/wine.png" alt="A watercolor drawing of a wine bottle, a wine glass, an a bunch of grapes"></div>`
     },
     {
       question: "What is the Japanese coined name for the 5th basic taste meaning ‘savory’?",
-      answers: [
-        "Unagi",
-        "Sarriette",
-        "Umami"
-      ],
-      correctAnswer: "Umami"
+      answers: `<label for="umami">
+      <input name="umami" type="radio" value="umami">Umami
+    </label>
+    <br>
+    <label for="sarriette">
+      <input name="umami" type="radio" value="sarriette">
+     Sarriette
+    </label>
+    <br>
+    <label for="unagi">
+      <input name="umami" type="radio" value="unagi">
+      Unagi    
+    </label>
+    <br>
+    <br>`,
+      correctAnswer: "Umami",
+      image: `<img src="images/sushi.png" alt="A watercolor drawing of a piece of shrimp sushi"></div>`
     },
     {
       question: "Which substance do we need to consume in order to function correctly?",
-      answers: [
-        "Sugar",
-        "Salt",
-        "Thyme"
-      ],
-      correctAnswer: "Salt"
+      answers: `<label for="sugar">
+      <input name="salty" type="radio" value="surgar">Sugar
+    </label>
+    <br>
+
+    <label for="salt">
+      <input name="salty" type="radio" value="salt">
+     Salt
+    </label>
+    <br>
+    <label for="thyme">
+      <input name="salty" type="radio" value="thyme">
+      Thyme    
+    </label>
+    <br>
+    <br>`,
+      correctAnswer: "Salt",
+      image: `<img src="images/popcorn.png" alt="A watercolor drawing of a box of popcorn"></div>`
     }
   ]
 }
-
-let images = [
-  'images/cake.png',
-  'images/grapefruit.png',
-  'images/wine.png',
-  'images/sushi.png',
-  'images/popcorn.png'
-]
-
 
 
 
@@ -157,7 +210,7 @@ let view2Quetions = `<div class="flexgroup">
 
 <main>
 
-  <div class="flexItem"><img src="${images[0]}" alt="Orange grapefruit"></div>
+  <div class="flexItem">${generateImage()}
   <form>
     <h2>${getQuestion()}</h2>
     ${getAnswer()}
