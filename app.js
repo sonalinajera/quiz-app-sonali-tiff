@@ -6,6 +6,7 @@ function main() {
   generateQuestion();
   getQuestion();
   getAnswer();
+  countPageNumber()
 }
 
 function handleStartButtonSubmit() {
@@ -20,24 +21,26 @@ function handleStartButtonSubmit() {
 
 function getQuestion() {
   let quizTemplateArr = questionPages.quizTemplate
-  let questionOnPage= "";
+  let questionOnPage = "";
   let questionNumber = 3;
   for (let i = 0; i < quizTemplateArr.length; i++) {
-    if (questionNumber === (i + 1)){
-    questionOnPage = quizTemplateArr[i].question}
+    if (questionNumber === (i + 1)) {
+      questionOnPage = quizTemplateArr[i].question
+    }
   }
-  return(questionOnPage);
+  return (questionOnPage);
 }
 
 function getAnswer() {
   let quizTemplateArr = questionPages.quizTemplate
-  let answerOnPage= '';
+  let answerOnPage = '';
   let questionNumber = 1;
   for (let i = 0; i < quizTemplateArr.length; i++) {
-    if (questionNumber === (i + 1)){
-    answerOnPage = quizTemplateArr[i].answers}
+    if (questionNumber === (i + 1)) {
+      answerOnPage = quizTemplateArr[i].answers
+    }
   }
-  return(answerOnPage); //returning arr of answers
+  return (answerOnPage); //returning arr of answers
 
   //turn arr into strings 
   //then return each string with arr of answers
@@ -53,7 +56,7 @@ function getAnswer() {
 function generateQuestion(quizTemplateObj, viewObj) {
   // let options = getOptions(questionsObj)
   //pass DK thru tubes (DK === parameter & tubes === function)
-  
+
   console.log('hey there');
   // iterate over the array
   // pul; the question and the answers 
@@ -64,7 +67,12 @@ function generateImage() {
 }
 
 function countPageNumber() {
-  //will update current page number
+  let pageNumber = null;
+  $('.pageView').on('click', '.button', function (event) {
+    event.preventDefault();
+    pageNumber = questionOnPages.quizTemplate[0].questionNumber++;
+    })
+    return pageNumber;
 }
 
 function updateUserScore() {
@@ -82,6 +90,7 @@ function checkUserInputButton() {
 const questionPages = {
   quizTemplate: [
     {
+      questionNumber: 1,
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
       answers: `<label for="infancy">
       <input name="infancy" type="radio" value="infancy">infancy
@@ -156,11 +165,11 @@ let view2Quetions = `<div class="flexgroup">
 
 </main>
 
-<footer>
+<footer class="counters">
   <!-- counter idea // <p>$ curlyBracket questionPages.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
   
   <p>Correct: 2, Incorrect:1</p>
-  <p>${questionPages.quizTemplate.indexOf(questionPages.quizTemplate[0]) + 1} of ${questionPages.quizTemplate.length}</p>
+  <p>${countPageNumber()}</p>
 </footer>
 
 </div>
@@ -198,7 +207,7 @@ let view3CorrectAnswer = `<!--plug correct template into a variable-->
 
   </main>
 
-  <footer>
+  <footer class="counters">
     <!-- Should update plus 1 not incorrect  -->
     <p>Correct: 2, Incorrect:1</p>
     <p>Question 1 of 5</p>
@@ -240,7 +249,7 @@ let view3IncorrectAnswer = `<div class="flexgroup flexgroupAnswerMargin">
 
 </main>
 
-<footer>
+<footer class="counters">
   <!-- should update incorrect plus one only -->
   <p>Correct: 2, Incorrect:1</p>
   <p>Question 1 of 5</p>
