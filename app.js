@@ -21,7 +21,7 @@ function handleStartButtonSubmit() {
 function getQuestion() {
   let quizTemplateArr = questionPages.quizTemplate
   let questionOnPage= "";
-  let questionNumber = 2;
+  let questionNumber = 3;
   for (let i = 0; i < quizTemplateArr.length; i++) {
     if (questionNumber === (i + 1)){
     questionOnPage = quizTemplateArr[i].question}
@@ -31,7 +31,7 @@ function getQuestion() {
 
 function getAnswer() {
   let quizTemplateArr = questionPages.quizTemplate
-  let answerOnPage= [];
+  let answerOnPage= '';
   let questionNumber = 1;
   for (let i = 0; i < quizTemplateArr.length; i++) {
     if (questionNumber === (i + 1)){
@@ -53,46 +53,7 @@ function getAnswer() {
 function generateQuestion(quizTemplateObj, viewObj) {
   // let options = getOptions(questionsObj)
   //pass DK thru tubes (DK === parameter & tubes === function)
-  let someVar = `<div class="flexgroup">
-<main>
-
-  <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
-  <form>
-    <h2>${getQuestion()}</h2>  <--!sub out [0] for variable that is the current question-->
-    <!-- function options()-->
-    <label for="infancy">
-      <input name="sweet" type="radio" value="infancy">
-      it allows us to detect proton level of acids
-    </label>
-    <br>
-
-    <label for="puberty">
-      <input name="sweet" type="radio" value="puberty">  <!--loop thru possible answers that builds this string (includes radio button)-->
-      scrunches up your face
-    </label>
-    <br>
-    <label for="age42">
-      <input name="sweet" type="radio" value="age42">
-      helps create saliva in your mouth
-    </label>
-    <br>
-    <br>
-    <button class="button">Next</button>
-  </form>
-
-</main>
-
-<footer>
-  <p>Correct: 2, Incorrect:1</p>
-  <p></p>
-</footer>
-
-</div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.slim.js" crossorigin="anonymous">
-</script>
-<script src="app.js">
-</script>`
+  
   console.log('hey there');
   // iterate over the array
   // pul; the question and the answers 
@@ -122,29 +83,32 @@ const questionPages = {
   quizTemplate: [
     {
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
-      answers: [
-        "Infancy",
-        "Puberty",
-        "Age 42"
-      ],
+      answers: `<label for="infancy">
+      <input name="infancy" type="radio" value="infancy">infancy
+    </label>
+    <br>
+
+    <label for="puberty">
+      <input name="sweet" type="radio" value="puberty">
+      scrunches up your face
+    </label>
+    <br>
+    <label for="age42">
+      <input name="sweet" type="radio" value="age42">
+      helps create saliva in your mouth
+    </label>
+    <br>
+    <br>`,
       correctAnswer: "Infancy"
     },
     {
       question: "Sour taste is a good biochemical protective/warning system because...",
-      answers: [
-        "It allows us to detect proton level of acids",
-        "It causes your face to scrunch up ",
-        "It helps create saliva in your mouth"
-      ],
+      answers: `THIS IS A TEST `,
       correctAnswer: "allows us to detect proton level of acids"
     },
     {
       question: "The ___ of our tongue is sensitive to bitter tastes so we can spit out poisonous or spoiled foods before we swallow them.",
-      answers: [
-        "Back",
-        "Underside",
-        "Front"
-      ],
+      answers: `ANOTHER TEST`,
       correctAnswer: "Back"
     },
     {
@@ -186,22 +150,7 @@ let view2Quetions = `<div class="flexgroup">
   <div class="flexItem"><img src="${images[0]}" alt="Orange grapefruit"></div>
   <form>
     <h2>${getQuestion()}</h2>
-    <label for="infancy">
-      <input name="infancy" type="radio" value="infancy">infancy
-    </label>
-    <br>
-
-    <label for="puberty">
-      <input name="sweet" type="radio" value="puberty">
-      scrunches up your face
-    </label>
-    <br>
-    <label for="age42">
-      <input name="sweet" type="radio" value="age42">
-      helps create saliva in your mouth
-    </label>
-    <br>
-    <br>
+    ${getAnswer()}
     <button class="button">Next</button>
   </form>
 
