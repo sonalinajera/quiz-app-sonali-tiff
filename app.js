@@ -57,7 +57,7 @@ const store = {
 function generateStartPage() {
   $('header h1').text('The Five Basic Tastes')
   $('main').html(`<main class="flexgroup">
-  <p>Quiz yourself on how well you know your five basic tastes!</p>
+  <p class="fontHandlee">Quiz yourself on how well you know your five basic tastes!</p>
   <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
   </figure>
@@ -96,7 +96,7 @@ function generateImageAlt(){
 function generateAnswers() {
   let answersArray = sampleAnswers();
   return (answersArray.reduce((html, answer, i) =>
-    html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
+    html + `<label class="fontHandlee"> <input name="option" type="radio" value="${i}">${answer}</label><br>`
     , ''))
 }
 
@@ -156,7 +156,7 @@ function generateCorrectAnswerPage()  {
   return ` <div class="flexgroup">
     <main>
       <h2>${sampleQuestions()}</h2>
-      <p>Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p>Congrats, you did kermit proud! </p>
       <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
       <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
@@ -177,8 +177,8 @@ function generateIncorrectAnswerPage() {
     <main>
       <h2>${sampleQuestions()}</h2>
       <p class="wrongAnswerPicked">Your answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
-      <p>Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
-      <p>Womp, womp, womp! Better luck next time :/<p>
+      <p class="correctAnswer">Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p class="fontHandlee">Womp, womp, womp! Better luck next time :/<p>
       <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
       <button id="navToNextQuestion">Next</button>
     </main>

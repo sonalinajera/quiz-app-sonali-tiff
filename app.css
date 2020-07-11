@@ -7,8 +7,8 @@
   *
 */
 html{
-  border-left: solid salmon 20px;
-  border-right: solid salmon 20px;
+  border-left: solid #F9c535 20px;
+  border-right: solid #F9c535 20px;
   margin: 0;
   height: 100%;
 }
@@ -35,16 +35,31 @@ h1 {
   text-align: center;
   margin: 20px;
   padding: 10px;
+  color: #e71d36;
+  font-family: 'Bungee Shade';
+  font-size: 50px;
 }
 
 h2{
-  font-family: ;
-  font-size: 1.3em;
+  font-size: 25px;
   text-align: center;
+  color: #042A2B;
+  font-family: 'Just Another Hand'
 }
 
 main > p {
   text-align: center;
+  color: #77777A;
+}
+
+.fontHandlee{
+  font-family: 'Handlee';
+}
+
+.correctAnswer{
+  font-family: handlee;
+  color: #e71d36;
+  font-weight: bold;
 }
 
 img{
@@ -66,7 +81,7 @@ form input {
 }
 
 label {
-  color: #333;
+  color: #77777A;
   display: inline-flex;
 }
 
@@ -76,12 +91,18 @@ label {
 }
 
 .wrongAnswerPicked {
-  color: red;
+  color: #218380;
+  font-family: handlee;
 }
 
 button {
-background-color: #d87093;
-color: #3c2109;
+  font-family: handlee;
+  background-color: #EF9339;
+  color: #3c2109;
+  position: fixed;
+  left: 25%;
+  bottom: 65px;
+  width: 50%;
 }
 
 /* I feel rather than reletalive we should align the button to the end
@@ -95,7 +116,9 @@ form div, .centerButton {
 footer {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  position: fixed;
+  bottom: 10px;
   margin-top: 10px;
   font-size: .7em;
 }
