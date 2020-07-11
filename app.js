@@ -57,7 +57,7 @@ function generateQuestions() {
 
     <main>
 
-      <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
+      ${generateImage()}
       <form>
         <h2>${sampleQuestions()}</h2> ${generateAnswers()}
          <button class="button">Next</button>
@@ -70,6 +70,17 @@ function generateQuestions() {
       <p>Question 1 of 5</p>
     </footer>`
   )
+}
+
+//input: store
+//output: SINGLE image inside of store
+function generateImage(){
+  let imageTemplate = store.quizTemplate;
+  for (let i = 0; i <imageTemplate.length; i++){
+    if (store.questionNumber === i){
+      return imageTemplate[i].image;
+    }
+  }
 }
 
 //DONT FORGET that questionNumber hasn't been defined yet
@@ -165,27 +176,7 @@ function getQuestion() {
 // use currentQuestion() to get questionObject OR from parameter
 // }
 
-function generateQuestion(quizTemplateObj, viewObj) {
-  // let options = getOptions(questionsObj)
-  //pass DK thru tubes (DK === parameter & tubes === function)
 
-  console.log('hey there');
-  // iterate over the array
-  // pul; the question and the answers 
-}
-
-function generateImage() {
-  let quizTemplateArr = store.quizTemplate;
-  let imageOnPage = '';
-  let questionNumber = 5;
-  for (let i = 0; i < quizTemplateArr.length; i++) {
-    if (questionNumber === (i + 1)) {
-      imageOnPage = quizTemplateArr[i].image;
-    }
-  }
-  return (imageOnPage);
-}
-// to be accessible it needs to happen on a submit of form , then store/ask for value selected
 function registerNextQuestions() {
   $('.pageView').on('click', '.button', function (event) {
     event.preventDefault();
@@ -218,31 +209,31 @@ const store = {
       answers: ['Infancy', 'Adulthood', 42],
       // update correct answer from string to number value, then compare index answer picked to correct answer value
       correctAnswer: 0,
-      image: `<img src="images/cake.png" alt="A watercolor drawing of a piece of cake"></div>`
+      image: [`<img src="images/cake.png"`, `alt="A watercolor drawing of a piece of cake"></div>`]
     },
     {
       question: "Sour taste is a good biochemical protective/warning system because...",
       answers: ['It allows us to detect proton level of acids', 'It makes us scrunch up our face', 'It helps create saliva in your mouth'],
       correctAnswer: 0,
-      image: `<img src="images/grapefruit.png" alt="A water color drawing of a sliced grapefruit"></div>`
+      image: [`<img src="images/grapefruit.png"`, `alt="A water color drawing of a sliced grapefruit"></div>`]
     },
     {
       question: "The ___ of our tongue is sensitive to bitter tastes so we can spit out poisonous or spoiled foods before we swallow them.",
       answers: ['Underside', 'Front', 'Back'],
       correctAnswer: 2,
-      image: `<img src="images/wine.png" alt="A watercolor drawing of a wine bottle, a wine glass, an a bunch of grapes"></div>`
+      image: [`<img src="images/wine.png"`, `alt="A watercolor drawing of a wine bottle, a wine glass, an a bunch of grapes"></div>`]
     },
     {
       question: "What is the Japanese coined name for the 5th basic taste meaning ‘savory’?",
       answers: ['Unagi', 'Umami', 'Sarriette'],
       correctAnswer: 1,
-      image: `<img src="images/sushi.png" alt="A watercolor drawing of a piece of shrimp sushi"></div>`
+      image: [`<img src="images/sushi.png"`, `alt="A watercolor drawing of a piece of shrimp sushi"></div>`]
     },
     {
       question: "Which substance do we need to consume in order to function correctly?",
       answers: ['Sugar', 'Salt', 'Thyme'],
       correctAnswer: 1,
-      image: `<img src="images/popcorn.png" alt="A watercolor drawing of a box of popcorn"></div>`
+      image: [`<img src="images/popcorn.png"`, `alt="A watercolor drawing of a box of popcorn"></div>`]
     }
   ],
   quizStarted: false,
