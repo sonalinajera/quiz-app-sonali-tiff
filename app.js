@@ -5,9 +5,7 @@ function main() {
   handleStartButtonSubmit();
   generateQuestion();
   getQuestion();
-  getAnswer();
   registerNextQuestions();
-  render();
   getAnswerArray()
 }
 
@@ -15,8 +13,10 @@ function main() {
 // render function
 
 function render() {
-  let html = '';
-  html + generateAnswers()
+  let html = ``;
+  if (questionPages.quizStarted === true) {
+  html += `<h1> hey babe <h1>`
+  }
   $('body').html(html);
 }
 
@@ -25,13 +25,15 @@ function render() {
 
 // this needs to connect with event where i is checked, and get answers array
 
-
+function sampleAnswer() {
+  let answerTemplete = black;
+}
 
 function generateAnswers(answersArray) {
   // want to use reduce, inputting an array of values, return one long string of html 
-  let sampleAnswers = ['first', 'second', 'third'];
+  answerArray = sampleAnswer();
 
- return sampleAnswers.reduce((html, answer, i) => 
+ return answersArray.reduce((html, answer, i) => 
     html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
   , '')
 }
@@ -83,7 +85,8 @@ function handleStartButtonSubmit() {
   $('#startButton').on('click', function (event) {
     event.preventDefault();
     questionPages.quizStarted = true;
-    render();
+    console.log('hey girl hey');
+     render();
   });
 }
 
