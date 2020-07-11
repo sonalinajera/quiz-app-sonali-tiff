@@ -26,7 +26,7 @@ function startQuiz() {
 function render() {
   let html = ``;
   if (store.quizStarted === true){
-    html += `<h1> hey babe <h1>`;
+    html += generateQuestions();
   $('body').html(html);
 }
 }
@@ -59,7 +59,7 @@ function generateQuestions() {
 
       <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
       <form>
-        <h2>${currentQuestion}</h2> ${generateAnswers}
+        <h2>${sampleQuestions()}</h2> ${generateAnswers()}
          <button class="button">Next</button>
       </form>
 
