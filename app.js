@@ -24,21 +24,55 @@ function render() {
 
 // this needs to connect with event where i is checked, and get answers array
 
-// want to use reduce, inputting an array of values, return one long string of html 
-//if question/answers object === question number {print out those answers}
-// itterate thru answers array
+//define input: object store
+//define output: a SINGLE "question" from arr
+//itterate thru the quizTemplate
+function sampleQuestions(){
+  let questionTemplate = store.quizTemplate;
+  for (let i = 0; i < questionTemplate; i++){
+    if (store.questionNumber === i + 1){
+      return questionTemplate[i].question;
+    }
+  }
+}
+
+//input: Single question from arr matching page #
+//output: render question page view
+function generateQuestions() {
+  let currentQuestion = sampleQuestions();
+  console.log(
+    `  <div class="flexgroup">
+
+    <main>
+
+      <div class="flexItem"><img src="images/grapefruit.png" alt="Orange grapefruit"></div>
+      <form>
+        <h2>${currentQuestion}</h2> ${generateAnswers}
+         <button class="button">Next</button>
+      </form>
+
+    </main>
+
+    <footer>
+      <p>Correct: 2, Incorrect:1</p>
+      <p>Question 1 of 5</p>
+    </footer>`
+  )
+}
+
+//DONT FORGET that questionNumber hasn't been defined yet
+// -1
 function sampleAnswers(){
     let answerTemplate = store.quizTemplate;
     for (let i = 0; i < answerTemplate.length; i++){
-      if (2 === i ){
+      if (store.questionNumber === i){
           return answerTemplate[i].answers;
       }
     }
 }
 
-
-function generateAnswers(answersArray) {
-  answersArray = sampleAnswers();
+function generateAnswers() {
+  let answersArray = sampleAnswers();
   console.log(answersArray.reduce((html, answer, i) =>
     html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
     , ''))
