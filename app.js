@@ -5,7 +5,6 @@ function main() {
   handleStartButtonSubmit();
   generateQuestion();
   getQuestion();
-  getAnswer();
   registerNextQuestions();
   render();
   getAnswerArray()
@@ -25,23 +24,34 @@ function render() {
 
 // this needs to connect with event where i is checked, and get answers array
 
+// want to use reduce, inputting an array of values, return one long string of html 
+//if question/answers object === question number {print out those answers}
+// itterate thru answers array
+function sampleAnswers(){
+    let answerTemplate = store.quizTemplate;
+    for (let i = 0; i < answerTemplate.length; i++){
+      if (2 === i ){
+          return answerTemplate[i].answers;
+      }
+    }
+}
 
 
 function generateAnswers(answersArray) {
-  // want to use reduce, inputting an array of values, return one long string of html 
-  let sampleAnswers = ['first', 'second', 'third'];
-
- return sampleAnswers.reduce((html, answer, i) => 
+  answersArray = sampleAnswers();
+  console.log(answersArray.reduce((html, answer, i) =>
     html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
-  , '')
+    , ''))
 }
 
 
 
 
+
+
 function getAnswerArray(quizTemplateArray, pageNumber) {
-  
-  // let quizTemplateArr = questionPages.quizTemplate;
+
+  // let quizTemplateArr = store.quizTemplate;
   // let answerOnPage = '';
   // let questionNumber = 5;
   // for (let i = 0; i < quizTemplateArr.length; i++) {
@@ -53,7 +63,7 @@ function getAnswerArray(quizTemplateArray, pageNumber) {
 }
 
 function generateQuestion() {
- console.log( `<div class="flexgroup">
+  console.log(`<div class="flexgroup">
 
  <main>
  
@@ -67,7 +77,7 @@ function generateQuestion() {
  </main>
  
  <footer class="counters">
-   <!-- counter idea // <p>$ curlyBracket questionPages.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
+   <!-- counter idea // <p>$ curlyBracket store.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
    
    <p>Correct: 2, Incorrect:1</p>
    <p>${countPageNumber()}</p>
@@ -82,14 +92,14 @@ function generateQuestion() {
 function handleStartButtonSubmit() {
   $('#startButton').on('click', function (event) {
     event.preventDefault();
-    questionPages.quizStarted = true;
+    store.quizStarted = true;
     render();
   });
 }
 
 
 function getQuestion() {
-  let quizTemplateArr = questionPages.quizTemplate;
+  let quizTemplateArr = store.quizTemplate;
   let questionOnPage = '';
   let questionNumber = 5;
   for (let i = 0; i < quizTemplateArr.length; i++) {
@@ -118,7 +128,7 @@ function generateQuestion(quizTemplateObj, viewObj) {
 }
 
 function generateImage() {
-  let quizTemplateArr = questionPages.quizTemplate;
+  let quizTemplateArr = store.quizTemplate;
   let imageOnPage = '';
   let questionNumber = 5;
   for (let i = 0; i < quizTemplateArr.length; i++) {
@@ -129,15 +139,15 @@ function generateImage() {
   return (imageOnPage);
 }
 // to be accessible it needs to happen on a submit of form , then store/ask for value selected
-function registerNextQuestions(){
+function registerNextQuestions() {
   $('.pageView').on('click', '.button', function (event) {
     event.preventDefault();
-    questionPages.quizTemplate[0].questionNumber++;
-    })
+    store.quizTemplate[0].questionNumber++;
+  })
 }
 
 function countPageNumber() {
-    return questionPages.questionNumber;
+  return store.questionNumber;
 }
 
 function updateUserScore() {
@@ -150,13 +160,13 @@ function checkUserInputButton() {
   // else generate incorrect answer page  
 }
 
-  
+
 
 
 //data model v
-const questionPages = {
+const store = {
   quizTemplate: [
-    { 
+    {
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
       answers: ['Infancy', 'Adulthood', 42],
       // update correct answer from string to number value, then compare index answer picked to correct answer value
@@ -190,7 +200,7 @@ const questionPages = {
   ],
   quizStarted: false,
   submitedAnswers: '',
-  questionNumber: 0,
+  questionNumber: 0, //ea click = questionNumber++
   score: 0
 }
 
@@ -210,7 +220,7 @@ let view2Quetions = `<div class="flexgroup">
 </main>
 
 <footer class="counters">
-  <!-- counter idea // <p>$ curlyBracket questionPages.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
+  <!-- counter idea // <p>$ curlyBracket store.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
   
   <p>Correct: 2, Incorrect:1</p>
   <p>${countPageNumber()}</p>
@@ -333,34 +343,34 @@ let view4Results = `<main>
 /**
  * Example store structure
  */
-const store = {
-  // 5 or more questions are required
-  questions: [
-    {
-      question: 'What color is broccoli?',
-      answers: [
-        'red',
-        'orange',
-        'pink',
-        'green'
-      ],
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What is the current year?',
-      answers: [
-        '1970',
-        '2015',
-        '2019',
-        '2005'
-      ],
-      correctAnswer: '2019'
-    }
-  ],
-  quizStarted: false,
-  questionNumber: 0,
-  score: 0
-};
+// const store = {
+//   // 5 or more questions are required
+//   questions: [
+//     {
+//       question: 'What color is broccoli?',
+//       answers: [
+//         'red',
+//         'orange',
+//         'pink',
+//         'green'
+//       ],
+//       correctAnswer: 'green'
+//     },
+//     {
+//       question: 'What is the current year?',
+//       answers: [
+//         '1970',
+//         '2015',
+//         '2019',
+//         '2005'
+//       ],
+//       correctAnswer: '2019'
+//     }
+//   ],
+//   quizStarted: false,
+//   questionNumber: 0,
+//   score: 0
+//};
 
 // renderQuestion() //pulls view to code
 // generateQuestion() //brings proper question to view
