@@ -66,13 +66,17 @@ form input {
 }
 
 label {
-  color: red;
+  color: #333;
   display: inline-flex;
 }
 
 .centerAnswers {
   text-align: center;
   margin-bottom: 50px;
+}
+
+.wrongAnswerPicked {
+  color: red;
 }
 
 button {
@@ -82,9 +86,10 @@ color: #3c2109;
 
 /* I feel rather than reletalive we should align the button to the end
 of the form container so it will always be to the left */
-.button {
-  position: relative;
-  left: 200px;
+form div, .centerButton {
+  /* position: relative;
+  left: 200px; */
+  text-align: center;
 }
 
 footer {

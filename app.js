@@ -2,211 +2,13 @@
 
 function main() {
   handleStartButtonSubmit();
-  render();
-  registerNextQuestions();
+  registerAnswerSubmission();
+  moveToNextQuestion();
+  restartQuiz();
+  generateStartPage();
 }
+// Data
 
-function handleStartButtonSubmit() {
-  $('#startButton').on('click', function (event) {
-    event.preventDefault();
-
-    console.log('hey girl hey');
-  });
-}
-
-function startQuiz() {
-
-}
-
-
-function render() {
-  let html = ``;
-  if ((store.quizStarted === true) && (store.submitedAnswer !== '')){
-    if (store.userAnsweredRight) {
-    html += generateCorrectAnswerPage()
-    $('body').html(html);
-    } else {
-      html += generateIncorrectAnswerPage()
-      $('body').html(html);
-    }
-  } else if (store.quizStarted === true){
-    html += generateQuestions();
-    $('body').html(html);
-}
-}
-
-
-function sampleQuestions(){
-  let questionTemplate = store.quizTemplate;
-  for (let i = 0; i < questionTemplate.length; i++){
-    if ((store.questionNumber - 1) === i){
-      return questionTemplate[i].question;
-    }
-  }
-}
-
-//input: Single question from arr matching page #
-//output: render question page view
-function generateQuestions() {
-  let currentQuestion = sampleQuestions();
-  return (
-    `  <div class="flexgroup">
-
-    <main>
-
-    <div class="flexItem"><img src="${generateImageSrc()}" alt="${generateImageAlt()}"></div>
-      <form>
-        <h2>${sampleQuestions()}</h2>
-        ${generateAnswers()}
-        <br>
-         <button class="button">Next</button>
-      </form>
-
-    </main>
-
-    <footer>
-      <p>${store.score} right out of 5</p>
-      <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>`
-  )
-}
-
-function generateImageSrc(){
-  let imageSrc = ""; 
-  let imageTemplate = store.quizTemplate;
-  for (let i = 0; i <imageTemplate.length; i++){
-    if ((store.questionNumber - 1) === i){
-      imageSrc = imageTemplate[i].image[0];
-    }
-  }
-  return imageSrc;
-}
-
-function generateImageAlt(){
-  let imageAlt = "";
-  let imageTemplate = store.quizTemplate;
-  for (let i = 0; i <imageTemplate.length; i++){
-    if ((store.questionNumber - 1) === i){
-      imageAlt = imageTemplate[i].image[1];
-    }
-  }
-  return imageAlt;
-}
-
-function sampleAnswers(){
-    let answerTemplate = store.quizTemplate;
-    for (let i = 0; i < answerTemplate.length; i++){
-      if ((store.questionNumber -1) === i){
-          return answerTemplate[i].answers;
-      }
-    }
-}
-
-function generateAnswers() {
-  let answersArray = sampleAnswers();
-  return (answersArray.reduce((html, answer, i) =>
-    html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
-    , ''))
-}
-
-
-function getAnswerArray(quizTemplateArray, pageNumber) {
-
-  // let quizTemplateArr = store.quizTemplate;
-  // let answerOnPage = '';
-  // let questionNumber = 5;
-  // for (let i = 0; i < quizTemplateArr.length; i++) {
-  //   if (questionNumber === (i + 1)) {
-  //     answerOnPage = quizTemplateArr[i].answers;
-  //   }
-  // }
-  // return (answerOnPage);
-}
-
-
-// handle clicks 
-
-function handleStartButtonSubmit() {
-  $('#startButton').on('click', function (event) {
-    event.preventDefault();
-    store.quizStarted = true;
-    store.questionNumber++;
-    render();
-  });
-}
-// this function stores the index of the user answer selected
-function registerNextQuestions() {
-  $('body').on('click','.button',function (event) {
-    event.preventDefault();
-    store.submitedAnswer = parseInt($("input[name='option']:checked").val());
-
-    if (store.submitedAnswer === store.quizTemplate[store.questionNumber - 1].correctAnswer) {
-      store.score++;
-      store.userAnsweredRight = true;
-      generateCorrectAnswerPage()
-      render()
-    } else {
-      store.userAnsweredRight = false;
-      generateIncorrectAnswerPage()
-      render()
-    }
-
-  })
-}
-
-function generateCorrectAnswerPage()  {
-  return ` <div class="flexgroup">
-    <main>
-      <h2>${sampleQuestions()}</h2>
-      <p>Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
-      <p>Congrats, you did kermit proud! </p>
-      <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
-      <button class="button">Next</button>
-    </main>
-
-    <footer>
-    <p>${store.score} out of 5</p>
-    <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>
-    </div>`
-}
-
-function generateIncorrectAnswerPage() {
-  return ` <div class="flexgroup">
-    <main>
-      <h2>${sampleQuestions()}</h2>
-      <p>Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
-      <p>Womp, womp, womp! Better luck next time :/<p>
-      <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
-      <button class="button">Next</button>
-    </main>
-
-    <footer>
-    <p>${store.score} right out of 5</p>
-    <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>
-    </div>`
-}
-
-
-function getQuestionNumber() {
-  return store.questionNumber;
-}
-
-function updateUserScore() {
-  // will keep track of user score
-}
-
-function checkUserInputButton() {
-  // will check user input against correct answer
-  // if answer is a match generate correct answer page
-  // else generate incorrect answer page  
-}
-
-
-
-
-//data model vqu
 const store = {
   quizTemplate: [
     {
@@ -243,10 +45,296 @@ const store = {
   ],
   quizStarted: false,
   submitedAnswer: '',
-  userAnsweredRight: null,
+  userAnsweredRight: false,
   questionNumber: 0, //ea click = questionNumber++
   score: 0
 };
+
+
+
+// These functions return HTML templates
+
+function generateStartPage() {
+  $('header h1').text('The Five Basic Tastes')
+  $('main').html(`<main class="flexgroup">
+  <p>Quiz yourself on how well you know your five basic tastes!</p>
+  <figure>
+    <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
+  </figure>
+  <div>
+    <button id="startButton">Start Button!</button>
+  </div>
+</main>`);
+}
+
+
+function generateImageSrc(){
+  let imageSrc = ""; 
+  let imageTemplate = store.quizTemplate;
+  for (let i = 0; i <imageTemplate.length; i++){
+    if ((store.questionNumber - 1) === i){
+      imageSrc = imageTemplate[i].image[0];
+    }
+  }
+  return imageSrc;
+}
+
+function generateImageAlt(){
+  let imageAlt = "";
+  let imageTemplate = store.quizTemplate;
+  for (let i = 0; i <imageTemplate.length; i++){
+    if ((store.questionNumber - 1) === i){
+      imageAlt = imageTemplate[i].image[1];
+    }
+  }
+  return imageAlt;
+}
+
+
+
+
+function generateAnswers() {
+  let answersArray = sampleAnswers();
+  return (answersArray.reduce((html, answer, i) =>
+    html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
+    , ''))
+}
+
+function sampleAnswers(){
+  let answerTemplate = store.quizTemplate;
+  for (let i = 0; i < answerTemplate.length; i++){
+    if ((store.questionNumber -1) === i){
+        return answerTemplate[i].answers;
+    }
+  }
+}
+
+function sampleQuestions(){
+  let questionTemplate = store.quizTemplate;
+  for (let i = 0; i < questionTemplate.length; i++){
+    if ((store.questionNumber - 1) === i){
+      return questionTemplate[i].question;
+    }
+  }
+}
+
+
+//input: Single question from arr matching page #
+//output: render question page view
+function generateQuestions() {
+  let currentQuestion = sampleQuestions();
+  return (
+    `  <div class="flexgroup">
+
+    <main>
+
+    <div class="flexItem"><img src="${generateImageSrc()}" alt="${generateImageAlt()}"></div>
+      <form>
+        <h2>${sampleQuestions()}</h2>
+        ${generateAnswers()}
+        <br>
+         <div><button class="button">Next</button></div>
+      </form>
+
+    </main>
+
+    <footer>
+      <p>${store.score} right out of 5</p>
+      <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>`
+  )
+}
+
+function generateReviewAnswers() {
+  if(store.userAnsweredRight === true) {
+    return generateCorrectAnswerPage();
+  } 
+  return generateIncorrectAnswerPage();
+}
+
+function generateCorrectAnswerPage()  {
+  return ` <div class="flexgroup">
+    <main>
+      <h2>${sampleQuestions()}</h2>
+      <p>Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p>Congrats, you did kermit proud! </p>
+      <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
+      <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
+    </main>
+
+    <footer>
+    <p>${store.score} out of 5</p>
+    <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>
+    </div>`
+}
+
+
+
+
+function generateIncorrectAnswerPage() {
+  return ` <div class="flexgroup">
+    <main>
+      <h2>${sampleQuestions()}</h2>
+      <p class="wrongAnswerPicked">Your answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
+      <p>Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p>Womp, womp, womp! Better luck next time :/<p>
+      <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
+      <button id="navToNextQuestion">Next</button>
+    </main>
+
+    <footer>
+    <p>${store.score} right out of 5</p>
+    <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>
+    </div>`
+}
+
+
+function generateFinalResultsPage(){
+  return ` <main>
+    <div class="flexgroup flexgroupAnswerMargin">
+    <h2>Final Results</h2>
+    <p> ${store.score / 5 * 100} %</p>
+
+    <p>You got ${store.score} right out of 5</p>
+
+    <!--Restart meme / maybe find back up image, this image should be hidden and only appear when submit is clicked, then after X seconds redirect to intro page-->
+    <Figure class="hideImage">
+    <img src="images/grapefruit.png" alt="">
+    </Figure>
+<!-- maybe we can change the text after the button is pressed once to 'here we go' or something  -->
+    <button id="restart">Restart Quiz?</button>
+    
+  </div>
+
+  </main>`;
+}
+
+
+
+
+/********** RENDER FUNCTION(S) **********/
+
+// This function conditionally replaces the contents of the <main> tag based on the state of the store
+
+// // this function checks condition of store values to determine what page to render, the default state is to render questions page
+// function render() {
+//   let html = ``;
+//   if ((store.quizStarted === true) && (store.submitedAnswer !== '')){
+//     if (store.userAnsweredRight) {
+//     html += generateCorrectAnswerPage()
+//     $('body').html(html);
+//     } else {
+//       html += generateIncorrectAnswerPage()
+//       $('body').html(html);
+//     }
+//   } else if (store.quizStarted === true){
+//     html += generateQuestions();
+//     $('body').html(html);
+// }
+// }
+
+// render should 
+//if start button is never clicked, render should never run
+//if the startButton is clicked the next view should always be the Questions page
+  //if user input is correct display correct page
+  //if user input is incorrect display incorrect page
+  // if user has answered the final question, display final results page
+
+
+// function render() {
+//   let html = ``;
+//   if(store.submitedAnswer === '') {
+//     html += generateQuestions();
+//   } else if(store.submitedAnswer !== ''){
+//     html += generateReviewAnswers();
+//   } else if(store.questionNumber === store.quizTemplate.length) {
+//     html += `<h2> the end </h2>`
+//   }
+//   $('body').html(html);
+// }
+
+
+function render() {
+  let html = ``;
+  if (store.questionNumber === store.quizTemplate.length + 1) {
+    html = generateFinalResultsPage();
+  } else if (store.submitedAnswer === '') {
+    html += generateQuestions();
+  } else {
+    html += generateReviewAnswers();
+  }
+  $('body').html(html);
+}
+
+
+
+
+/********** EVENT HANDLER FUNCTIONS **********/
+
+// These functions handle events (submit, click, etc)
+
+// listens for a click on start button, changes quizStarted to true, updates questionNumber to 1, calls render
+function handleStartButtonSubmit() {
+  $('main').on('click', '#startButton', function (event) {
+    event.preventDefault();
+    store.quizStarted = true;
+    store.questionNumber++;
+    render();
+  });
+}
+// this function stores the index of the user answer selected
+function registerAnswerSubmission() {
+  $('body').on('click','.button',function (event) {
+    event.preventDefault();
+    //stores users answer choice
+    store.submitedAnswer = parseInt($("input[name='option']:checked").val());
+    //user answers correct
+    if (store.submitedAnswer === store.quizTemplate[store.questionNumber - 1].correctAnswer) {
+      store.score++;
+      store.userAnsweredRight = true;
+  //   } else {
+  //     store.userAnsweredRight = false;
+  //     generateIncorrectAnswerPage()
+  //     render()
+  //   }
+  render()
+    }render()
+  });
+}
+
+
+function moveToNextQuestion () {
+  $('body').on('click', '#navToNextQuestion', function(event) {
+    event.preventDefault();
+    store.userAnsweredRight = false;
+    store.submitedAnswer = '';
+    store.questionNumber++;
+    console.log(store.questionNumber)
+    render();
+  });
+}
+
+function restartQuiz() {
+  $('body').on('click', '#restart', function (event) {
+    store.userAnsweredRight = false;
+    store.submitedAnswer = '';
+    store.questionNumber = 0;
+    store.questionNumber = 0;
+    store.score= 0;
+    
+  });
+};
+
+
+function getQuestionNumber() {
+  return store.questionNumber;
+}
+
+
+
+//data model vqu
 
 
 
