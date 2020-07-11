@@ -3,19 +3,19 @@
 function main() {
 
   handleStartButtonSubmit();
-  generateQuestion();
-  getQuestion();
   registerNextQuestions();
   render();
-  getAnswerArray()
+
 }
 
 
-// render function
+// renders question page, but generateQuestions() isn't working
+//generateAnswers will populate without clicking?
 
 function render() {
-  let html = '';
-  html + generateAnswers()
+  let html = ``;
+  if (store.quizStarted === true){
+    html += generateAnswers()}
   $('body').html(html);
 }
 
@@ -29,8 +29,8 @@ function render() {
 //itterate thru the quizTemplate
 function sampleQuestions(){
   let questionTemplate = store.quizTemplate;
-  for (let i = 0; i < questionTemplate; i++){
-    if (store.questionNumber === i + 1){
+  for (let i = 0; i < questionTemplate.length; i++){
+    if (store.questionNumber === i){
       return questionTemplate[i].question;
     }
   }
@@ -40,7 +40,7 @@ function sampleQuestions(){
 //output: render question page view
 function generateQuestions() {
   let currentQuestion = sampleQuestions();
-  console.log(
+  return (
     `  <div class="flexgroup">
 
     <main>
@@ -73,7 +73,7 @@ function sampleAnswers(){
 
 function generateAnswers() {
   let answersArray = sampleAnswers();
-  console.log(answersArray.reduce((html, answer, i) =>
+  return (answersArray.reduce((html, answer, i) =>
     html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
     , ''))
 }
