@@ -12,15 +12,15 @@ function main() {
 const store = {
   quizTemplate: [
     {
-      question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
-      answers: ['Infancy', 'Adulthood', 42],
+      question: "What stage in life does one have the strongest ability to taste sweet foods?",
+      answers: ['Infancy', 'Puberty', 'Adulthood'],
       // update correct answer from string to number value, then compare index answer picked to correct answer value
       correctAnswer: 0,
       image: [`images/cake.png`, `A watercolor drawing of a piece of cake`]
     },
     {
-      question: "Sour taste is a good biochemical protective/warning system because...",
-      answers: ['It allows us to detect proton level of acids', 'It makes us scrunch up our face', 'It helps create saliva in your mouth'],
+      question: "Sour taste acts as a protective/warning system...",
+      answers: ['To allow us to detect proton level of acids', 'To makes us scrunch up our face', 'To help us create saliva in our mouth'],
       correctAnswer: 0,
       image: [`images/grapefruit.png`, `A water color drawing of a sliced grapefruit`]
     },
@@ -31,13 +31,13 @@ const store = {
       image: [`images/wine.png`, `A watercolor drawing of a wine bottle, a wine glass, an a bunch of grapes`]
     },
     {
-      question: "What is the Japanese coined name for the 5th basic taste meaning ‘savory’?",
+      question: "What is the Japanese coined term for the 5th basic taste meaning ‘savory’?",
       answers: ['Unagi', 'Umami', 'Sarriette'],
       correctAnswer: 1,
       image: [`images/sushi.png`, `A watercolor drawing of a piece of shrimp sushi`]
     },
     {
-      question: "Which substance do we need to consume in order to function correctly?",
+      question: "Which substance do we need in order to function correctly?",
       answers: ['Sugar', 'Salt', 'Thyme'],
       correctAnswer: 1,
       image: [`images/popcorn.png`, `A watercolor drawing of a box of popcorn`]
@@ -55,9 +55,9 @@ const store = {
 // These functions return HTML templates
 
 function generateStartPage() {
-  $('header h1').text('The Five Basic Tastes')
+  $('header h1').text('Taste Test')
   $('main').html(`<main class="flexgroup">
-  <p class="fontHandlee">Quiz yourself on how well you know your five basic tastes!</p>
+  <p class="fontHandlee">How well do you know the five basic tastes?</p>
   <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
   </figure>
@@ -157,7 +157,7 @@ function generateCorrectAnswerPage()  {
     <main>
       <h2>${sampleQuestions()}</h2>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
-      <p>Congrats, you did kermit proud! </p>
+      <p class="fontHandlee">Congrats, you did kermit proud! </p>
       <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
       <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
     </main>
@@ -178,7 +178,7 @@ function generateIncorrectAnswerPage() {
       <h2>${sampleQuestions()}</h2>
       <p class="wrongAnswerPicked">Your answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
       <p class="correctAnswer">Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
-      <p class="fontHandlee">Womp, womp, womp! Better luck next time :/<p>
+      <p class="fontHandlee">That wasn't it, better luck next time!<p>
       <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
       <button id="navToNextQuestion">Next</button>
     </main>
@@ -195,9 +195,9 @@ function generateFinalResultsPage(){
   return ` <main>
     <div class="flexgroup flexgroupAnswerMargin">
     <h2>Final Results</h2>
-    <p> ${store.score / 5 * 100} %</p>
+    <p class="fontHandlee"> ${store.score / 5 * 100} %</p>
 
-    <p>You got ${store.score} right out of 5</p>
+    <p class="fontHandlee">You got ${store.score} right out of 5</p>
 
     <!--Restart meme / maybe find back up image, this image should be hidden and only appear when submit is clicked, then after X seconds redirect to intro page-->
     <Figure class="hideImage">
