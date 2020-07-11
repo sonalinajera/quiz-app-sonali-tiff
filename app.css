@@ -122,3 +122,10 @@ footer {
   margin-top: 10px;
   font-size: .7em;
 }
+
+@media all and (min-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+}

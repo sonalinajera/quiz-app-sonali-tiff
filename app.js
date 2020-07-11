@@ -176,8 +176,8 @@ function generateIncorrectAnswerPage() {
   return ` <div class="flexgroup">
     <main>
       <h2>${sampleQuestions()}</h2>
-      <p class="wrongAnswerPicked">Your answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
-      <p class="correctAnswer">Correct answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p class="wrongAnswerPicked">Your Answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
+      <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">That wasn't it, better luck next time!<p>
       <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
       <button id="navToNextQuestion">Next</button>
