@@ -29,6 +29,7 @@ function render() {
     html += `<h1> hey babe <h1>`;
   $('body').html(html);
 }
+}
 
 
 // generate pages functions 
@@ -248,7 +249,7 @@ const store = {
   submitedAnswers: '',
   questionNumber: 0, //ea click = questionNumber++
   score: 0
-}
+};
 
 
 
