@@ -3,6 +3,7 @@
 function main() {
   handleStartButtonSubmit();
   render();
+  registerNextQuestions();
 }
 
 function handleStartButtonSubmit() {
@@ -20,9 +21,17 @@ function startQuiz() {
 
 function render() {
   let html = ``;
-  if (store.quizStarted === true){
+  if ((store.quizStarted === true) && (store.submitedAnswer !== '')){
+    if (store.userAnsweredRight) {
+    html += generateCorrectAnswerPage()
+    $('body').html(html);
+    } else {
+      html += generateIncorrectAnswerPage()
+      $('body').html(html);
+    }
+  } else if (store.quizStarted === true){
     html += generateQuestions();
-  $('body').html(html);
+    $('body').html(html);
 }
 }
 
@@ -56,7 +65,7 @@ function generateQuestions() {
     </main>
 
     <footer>
-      <p>Correct: 2, Incorrect:1</p>
+      <p>${store.score} right out of 5</p>
       <p>Question ${getQuestionNumber()} of 5</p>
     </footer>`
   )
@@ -125,13 +134,60 @@ function handleStartButtonSubmit() {
     render();
   });
 }
-
+// this function stores the index of the user answer selected
 function registerNextQuestions() {
-  $('.pageView').on('click', '.button', function (event) {
+  $('body').on('click','.button',function (event) {
     event.preventDefault();
-    store.quizTemplate[0].questionNumber++;
+    store.submitedAnswer = parseInt($("input[name='option']:checked").val());
+
+    if (store.submitedAnswer === store.quizTemplate[store.questionNumber - 1].correctAnswer) {
+      store.score++;
+      store.userAnsweredRight = true;
+      generateCorrectAnswerPage()
+      render()
+    } else {
+      store.userAnsweredRight = false;
+      generateIncorrectAnswerPage()
+      render()
+    }
+
   })
 }
+
+function generateCorrectAnswerPage()  {
+  return ` <div class="flexgroup">
+    <main>
+      <h2>${sampleQuestions()}</h2>
+      <p>Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p>Congrats, you did kermit proud! </p>
+      <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
+      <button class="button">Next</button>
+    </main>
+
+    <footer>
+    <p>${store.score} out of 5</p>
+    <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>
+    </div>`
+}
+
+function generateIncorrectAnswerPage() {
+  return ` <div class="flexgroup">
+    <main>
+      <h2>${sampleQuestions()}</h2>
+      <p>Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
+      <p>Womp, womp, womp! Better luck next time :/<p>
+      <img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands">
+      <button class="button">Next</button>
+    </main>
+
+    <footer>
+    <p>${store.score} right out of 5</p>
+    <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>
+    </div>`
+}
+
 
 function getQuestionNumber() {
   return store.questionNumber;
@@ -150,7 +206,7 @@ function checkUserInputButton() {
 
 
 
-//data model v
+//data model vqu
 const store = {
   quizTemplate: [
     {
@@ -186,7 +242,8 @@ const store = {
     }
   ],
   quizStarted: false,
-  submitedAnswers: '',
+  submitedAnswer: '',
+  userAnsweredRight: null,
   questionNumber: 0, //ea click = questionNumber++
   score: 0
 };
