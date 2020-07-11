@@ -138,7 +138,7 @@ function generateQuestions() {
 
     </main>
 
-    <footer>
+    <footer class="fontHandlee">
       <p>${store.score} right out of 5</p>
       <p>Question ${getQuestionNumber()} of 5</p>
     </footer>`
@@ -162,7 +162,7 @@ function generateCorrectAnswerPage()  {
       <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
     </main>
 
-    <footer>
+    <footer class="fontHandlee">
     <p>${store.score} out of 5</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
@@ -183,7 +183,7 @@ function generateIncorrectAnswerPage() {
       <button id="navToNextQuestion">Next</button>
     </main>
 
-    <footer>
+    <footer class="fontHandlee">
     <p>${store.score} right out of 5</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
