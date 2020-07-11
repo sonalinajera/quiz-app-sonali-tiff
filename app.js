@@ -5,7 +5,7 @@ function main() {
   registerAnswerSubmission();
   moveToNextQuestion();
   restartQuiz();
-  generateStartPage();
+  render();
 }
 // Data
 
@@ -55,16 +55,18 @@ const store = {
 // These functions return HTML templates
 
 function generateStartPage() {
-  $('header h1').text('The Five Basic Tastes')
-  $('main').html(`<main class="flexgroup">
-  <p>Quiz yourself on how well you know your five basic tastes!</p>
-  <figure>
+
+return `<h1> The Five Basic Tastes</h2>
+  <main class="flexgroup"> 
+    <p>Quiz yourself on how well you know your five basic tastes!</p>
+    <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
-  </figure>
-  <div>
-    <button id="startButton">Start Button!</button>
-  </div>
-</main>`);
+    </figure>
+    <div>
+      <button id="startButton">Start Button!</button>
+   </div>
+  </main>`;
+
 }
 
 
@@ -96,7 +98,7 @@ function generateImageAlt(){
 function generateAnswers() {
   let answersArray = sampleAnswers();
   return (answersArray.reduce((html, answer, i) =>
-    html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
+    html + `<label> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
     , ''))
 }
 
@@ -216,24 +218,6 @@ function generateFinalResultsPage(){
 
 /********** RENDER FUNCTION(S) **********/
 
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-// // this function checks condition of store values to determine what page to render, the default state is to render questions page
-// function render() {
-//   let html = ``;
-//   if ((store.quizStarted === true) && (store.submitedAnswer !== '')){
-//     if (store.userAnsweredRight) {
-//     html += generateCorrectAnswerPage()
-//     $('body').html(html);
-//     } else {
-//       html += generateIncorrectAnswerPage()
-//       $('body').html(html);
-//     }
-//   } else if (store.quizStarted === true){
-//     html += generateQuestions();
-//     $('body').html(html);
-// }
-// }
 
 // render should 
 //if start button is never clicked, render should never run
@@ -243,22 +227,13 @@ function generateFinalResultsPage(){
   // if user has answered the final question, display final results page
 
 
-// function render() {
-//   let html = ``;
-//   if(store.submitedAnswer === '') {
-//     html += generateQuestions();
-//   } else if(store.submitedAnswer !== ''){
-//     html += generateReviewAnswers();
-//   } else if(store.questionNumber === store.quizTemplate.length) {
-//     html += `<h2> the end </h2>`
-//   }
-//   $('body').html(html);
-// }
 
 
 function render() {
   let html = ``;
-  if (store.questionNumber === store.quizTemplate.length + 1) {
+  if (store.quizStarted === false) {
+    html += generateStartPage();
+  } else if (store.questionNumber === store.quizTemplate.length + 1) {
     html = generateFinalResultsPage();
   } else if (store.submitedAnswer === '') {
     html += generateQuestions();
@@ -277,7 +252,7 @@ function render() {
 
 // listens for a click on start button, changes quizStarted to true, updates questionNumber to 1, calls render
 function handleStartButtonSubmit() {
-  $('main').on('click', '#startButton', function (event) {
+  $('body').on('click', '#startButton', function (event) {
     event.preventDefault();
     store.quizStarted = true;
     store.questionNumber++;
@@ -294,13 +269,12 @@ function registerAnswerSubmission() {
     if (store.submitedAnswer === store.quizTemplate[store.questionNumber - 1].correctAnswer) {
       store.score++;
       store.userAnsweredRight = true;
-  //   } else {
-  //     store.userAnsweredRight = false;
-  //     generateIncorrectAnswerPage()
-  //     render()
-  //   }
-  render()
-    }render()
+      render();
+    } else if (store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)] === undefined) {
+      alert('You need to select an answer before continuing')
+    } else {
+    render();
+  }
   });
 }
 
@@ -311,21 +285,23 @@ function moveToNextQuestion () {
     store.userAnsweredRight = false;
     store.submitedAnswer = '';
     store.questionNumber++;
-    console.log(store.questionNumber)
     render();
   });
 }
 
 function restartQuiz() {
   $('body').on('click', '#restart', function (event) {
-    store.userAnsweredRight = false;
-    store.submitedAnswer = '';
-    store.questionNumber = 0;
-    store.questionNumber = 0;
-    store.score= 0;
-    
+    event.preventDefault();
+     store.userAnsweredRight = false;
+     store.submitedAnswer = '';
+     store.questionNumber = 0;
+     store.quizStarted = false;
+     store.score= 0;
+    render()
+    console.log('LAST BUTTON WORKS')
   });
-};
+  
+}
 
 
 function getQuestionNumber() {
