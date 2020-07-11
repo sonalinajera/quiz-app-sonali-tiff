@@ -7,14 +7,83 @@ function main() {
   getQuestion();
   getAnswer();
   registerNextQuestions();
+  render();
+  getAnswerArray()
 }
+
+
+// render function
+
+function render() {
+  let html = '';
+  html + generateAnswers()
+  $('body').html(html);
+}
+
+
+// generate pages functions 
+
+// this needs to connect with event where i is checked, and get answers array
+
+
+
+function generateAnswers(answersArray) {
+  // want to use reduce, inputting an array of values, return one long string of html 
+  let sampleAnswers = ['first', 'second', 'third'];
+
+ return sampleAnswers.reduce((html, answer, i) => 
+    html + `<label> <input name="option" type="radio" value="${i}">${answer}</label><br>`
+  , '')
+}
+
+
+
+
+function getAnswerArray(quizTemplateArray, pageNumber) {
+  
+  // let quizTemplateArr = questionPages.quizTemplate;
+  // let answerOnPage = '';
+  // let questionNumber = 5;
+  // for (let i = 0; i < quizTemplateArr.length; i++) {
+  //   if (questionNumber === (i + 1)) {
+  //     answerOnPage = quizTemplateArr[i].answers;
+  //   }
+  // }
+  // return (answerOnPage);
+}
+
+function generateQuestion() {
+ console.log( `<div class="flexgroup">
+
+ <main>
+ 
+   <div class="flexItem">${generateImage()}
+   <form>
+     <h2>${getQuestion()}</h2>
+      ${generateAnswers}
+     <button class="button">Next</button>
+   </form>
+ 
+ </main>
+ 
+ <footer class="counters">
+   <!-- counter idea // <p>$ curlyBracket questionPages.answers curlyBracket</p> === true {return +1 for correct & 0 for incorrect} else {return 0 for correct & +1 for incorrect} -->
+   
+   <p>Correct: 2, Incorrect:1</p>
+   <p>${countPageNumber()}</p>
+ </footer>
+ 
+ </div>`);
+}
+
+
+// handle clicks 
 
 function handleStartButtonSubmit() {
   $('#startButton').on('click', function (event) {
     event.preventDefault();
-    let questionView2 =
-      $('#pageView').html(view2Quetions);
-    console.log("this is working");
+    questionPages.quizStarted = true;
+    render();
   });
 }
 
@@ -31,17 +100,7 @@ function getQuestion() {
   return (questionOnPage);
 }
 
-function getAnswer() {
-  let quizTemplateArr = questionPages.quizTemplate;
-  let answerOnPage = '';
-  let questionNumber = 5;
-  for (let i = 0; i < quizTemplateArr.length; i++) {
-    if (questionNumber === (i + 1)) {
-      answerOnPage = quizTemplateArr[i].answers;
-    }
-  }
-  return (answerOnPage);
-}
+
 
 
 // function getOptions(qObj){return inputs and label string  (same object, diff name Diddy Kong)
@@ -69,7 +128,7 @@ function generateImage() {
   }
   return (imageOnPage);
 }
-
+// to be accessible it needs to happen on a submit of form , then store/ask for value selected
 function registerNextQuestions(){
   $('.pageView').on('click', '.button', function (event) {
     event.preventDefault();
@@ -78,7 +137,7 @@ function registerNextQuestions(){
 }
 
 function countPageNumber() {
-    return questionPages.quizTemplate[0].questionNumber;
+    return questionPages.questionNumber;
 }
 
 function updateUserScore() {
@@ -97,111 +156,42 @@ function checkUserInputButton() {
 //data model v
 const questionPages = {
   quizTemplate: [
-    {
+    { 
       question: "At what stage of your life do you have the strongest ability to taste sweet foods?",
-      answers: `<label for="infancy">
-      <input name="sweet" type="radio" value="infancy">Infancy
-    </label>
-    <br>
-
-    <label for="puberty">
-      <input name="sweet" type="radio" value="puberty">
-      Puberty
-    </label>
-    <br>
-    <label for="age42">
-      <input name="sweet" type="radio" value="age42">
-      Age 42
-    </label>
-    <br>
-    <br>`,
-      correctAnswer: "Infancy",
+      answers: ['Infancy', 'Adulthood', 42],
+      // update correct answer from string to number value, then compare index answer picked to correct answer value
+      correctAnswer: 0,
       image: `<img src="images/cake.png" alt="A watercolor drawing of a piece of cake"></div>`
     },
     {
       question: "Sour taste is a good biochemical protective/warning system because...",
-      answers: `<label for="proton">
-      <input name="sour" type="radio" value="proton">It allows us to detect proton level of acids
-    </label>
-    <br>
-
-    <label for="scrunches">
-      <input name="sour" type="radio" value="scrunches">
-      It makes us scrunch up our face
-    </label>
-    <br>
-    <label for="age42">
-      <input name="sour" type="radio" value="age42">
-      It helps create saliva in your mouth
-    </label>
-    <br>
-    <br>`,
-      correctAnswer: "It allows us to detect proton level of acids",
+      answers: ['It allows us to detect proton level of acids', 'It makes us scrunch up our face', 'It helps create saliva in your mouth'],
+      correctAnswer: 0,
       image: `<img src="images/grapefruit.png" alt="A water color drawing of a sliced grapefruit"></div>`
     },
     {
       question: "The ___ of our tongue is sensitive to bitter tastes so we can spit out poisonous or spoiled foods before we swallow them.",
-      answers: `<label for="back">
-      <input name="bitter" type="radio" value="back">Back
-    </label>
-    <br>
-
-    <label for="underside">
-      <input name="bitter" type="radio" value="underside">
-     Underside
-    </label>
-    <br>
-    <label for="front">
-      <input name="bitter" type="radio" value="front">
-      front    
-    </label>
-    <br>
-    <br>`,
-      correctAnswer: "Back",
+      answers: ['Underside', 'Front', 'Back'],
+      correctAnswer: 2,
       image: `<img src="images/wine.png" alt="A watercolor drawing of a wine bottle, a wine glass, an a bunch of grapes"></div>`
     },
     {
       question: "What is the Japanese coined name for the 5th basic taste meaning ‘savory’?",
-      answers: `<label for="umami">
-      <input name="umami" type="radio" value="umami">Umami
-    </label>
-    <br>
-    <label for="sarriette">
-      <input name="umami" type="radio" value="sarriette">
-     Sarriette
-    </label>
-    <br>
-    <label for="unagi">
-      <input name="umami" type="radio" value="unagi">
-      Unagi    
-    </label>
-    <br>
-    <br>`,
-      correctAnswer: "Umami",
+      answers: ['Unagi', 'Umami', 'Sarriette'],
+      correctAnswer: 1,
       image: `<img src="images/sushi.png" alt="A watercolor drawing of a piece of shrimp sushi"></div>`
     },
     {
       question: "Which substance do we need to consume in order to function correctly?",
-      answers: `<label for="sugar">
-      <input name="salty" type="radio" value="surgar">Sugar
-    </label>
-    <br>
-
-    <label for="salt">
-      <input name="salty" type="radio" value="salt">
-     Salt
-    </label>
-    <br>
-    <label for="thyme">
-      <input name="salty" type="radio" value="thyme">
-      Thyme    
-    </label>
-    <br>
-    <br>`,
-      correctAnswer: "Salt",
+      answers: ['Sugar', 'Salt', 'Thyme'],
+      correctAnswer: 1,
       image: `<img src="images/popcorn.png" alt="A watercolor drawing of a box of popcorn"></div>`
     }
-  ]
+  ],
+  quizStarted: false,
+  submitedAnswers: '',
+  questionNumber: 0,
+  score: 0
 }
 
 
@@ -213,7 +203,7 @@ let view2Quetions = `<div class="flexgroup">
   <div class="flexItem">${generateImage()}
   <form>
     <h2>${getQuestion()}</h2>
-    ${getAnswer()}
+ 
     <button class="button">Next</button>
   </form>
 
