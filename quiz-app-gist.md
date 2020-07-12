@@ -1,3 +1,5 @@
+Quiz App built by Tiffany and Sonali
+
 Napkin model of app flow
 
 <img width="423" alt="Screen Shot 2020-07-08 at 4 51 48 PM" src="https://user-images.githubusercontent.com/65439450/86981730-48b15080-c13c-11ea-84d4-28cc741115e9.png">
@@ -18,7 +20,7 @@ View if user answered question correct
 
 ![view3_correct_answer_layout](https://user-images.githubusercontent.com/65439450/87002531-a068af80-c16e-11ea-8fcd-a2e9333bd7df.png)
 
-Vie is user answered question incorrect
+View if user answered question incorrect
 
 ![view3_incorrect_answer_layout](https://user-images.githubusercontent.com/65439450/87002536-a199dc80-c16e-11ea-9735-6d380929fac2.png)
 
