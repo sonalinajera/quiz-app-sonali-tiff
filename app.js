@@ -56,13 +56,13 @@ const store = {
 
 function generateStartPage() {
 
-return `<h1> The Five Basic Tastes</h2>
+  return `<h1> The Five Basic Tastes</h2>
   <main class="flexgroup">
     <p id="generateStartMessage">Quiz yourself on how well you know your five basic tastes!</p>
     <figure>
     <img class="startImage" src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
     </figure>
-    <button id="startButton">Start Quiz!</button>
+    <button id="startButton" class="animateButton" ><span>Start Quiz! <span></button>
   </main>`;
 
 }
@@ -87,11 +87,11 @@ function generateQuestions() {
 
       </main>
 
-    <footer class="fontHandlee">
+    <footer>
       <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score-1}</p>
       <p>Question ${getQuestionNumber()} of 5</p>
     </footer>`
-  )
+  );
 }
 
 function generateImageSrc(){
@@ -128,7 +128,7 @@ function getCurrentQuestionOptions(){
 function generateAnswers() {
   let answersArray = getCurrentAnswerOptions();
   return (answersArray.reduce((html, answer, i) =>
-    html + `<label> <input name="option${i}" type="radio" value="${i}" required="required">${answer} </label><br>`
+    html + `<label> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
     , ''));
 }
 
@@ -136,7 +136,7 @@ function getCurrentAnswerOptions(){
   let answerTemplate = store.quizTemplate;
   for (let i = 0; i < answerTemplate.length; i++){
     if ((store.questionNumber -1) === i){
-        return answerTemplate[i].answers;
+      return answerTemplate[i].answers;
     }
   }
 }
@@ -161,10 +161,10 @@ function generateCorrectAnswerPage()  {
       <p><button id="navToNextQuestion">Next Question</button></p>
     </main>
 
-    <footer class="fontHandlee">
+    <footer>
     <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>`
+    </footer>`;
 }
 
 function generateIncorrectAnswerPage() {
@@ -180,10 +180,10 @@ function generateIncorrectAnswerPage() {
       <p><button id="navToNextQuestion">Next Question</button></p>
     </main>
 
-    <footer class="fontHandlee">
+    <footer>
     <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>`
+    </footer>`;
 }
 
 //This function returns the results view
@@ -199,9 +199,6 @@ function generateFinalResultsPage(){
   </main>`;
 }
 
-
-
-
 /********** RENDER FUNCTION(S) **********/
 
 
@@ -211,9 +208,6 @@ function generateFinalResultsPage(){
   //if user input is correct display correct page
   //if user input is incorrect display incorrect page
   // if user has answered the final question, display final results page
-
-
-
 
 function render() {
   let html = ``;
@@ -230,8 +224,6 @@ function render() {
 }
 
 
-
-
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
@@ -246,6 +238,7 @@ function handleStartButtonSubmit() {
   });
 }
 // this function stores the index of the user answer selected
+
 function registerAnswerSubmission() {
   $('body').on('click','.button',function (event) {
     event.preventDefault();
@@ -256,13 +249,11 @@ function registerAnswerSubmission() {
       store.score++;
       store.userAnsweredRight = true;
       render();
-    } 
-    // else if (store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)] === undefined) {
-    //   alert('You need to select an answer before continuing');
-    // } 
-    else {
-    render();
-  }
+    } else if (store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)] === undefined) {
+       alert('You need to select an answer before continuing');
+    } else {
+      render();
+    }
   });
 }
 
@@ -280,13 +271,12 @@ function moveToNextQuestion () {
 function restartQuiz() {
   $('body').on('click', '#restart', function (event) {
     event.preventDefault();
-     store.userAnsweredRight = false;
-     store.submitedAnswer = '';
-     store.questionNumber = 0;
-     store.quizStarted = false;
-     store.score= 0;
-    render()
-    console.log('LAST BUTTON WORKS')
+    store.userAnsweredRight = false;
+    store.submitedAnswer = '';
+    store.questionNumber = 0;
+    store.quizStarted = false;
+    store.score= 0;
+    render();
   });
   
 }

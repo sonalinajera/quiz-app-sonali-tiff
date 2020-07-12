@@ -7,7 +7,7 @@
   *
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Handlee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Handlee&family=Just+Another+Hand&display=swap');
 
 /* general style rules shared among all views */
 
@@ -66,7 +66,7 @@ form div {
   margin-top: 50px;
 }
 
-main > p, section > p {
+p {
   text-align: center;
   color: #333;
   font-family: 'Handlee'
@@ -151,7 +151,7 @@ label {
 }
 
 @media all and (min-width: 600px) {
-
+/* general styles  */
   body {
     border-left: solid #F9c535 40px;
     border-right: solid #F9c535 40px;
@@ -161,17 +161,55 @@ label {
     font-size: 75px;
   }
 
-  form h2 {
-    max-width: 590px;
-    font-size: 1.7em;
+  h2 {
+    max-width: 760px;
+    font-size: 2em;
   }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #f8a047;
+    box-shadow: 4px 6px 10px 3px rgb(172, 169, 169);
+  }
+
+  .animateButton {
+    width: 200px;
+    transition: all 0.5s;
+  }
+  
+  /* styles css effects on hover */
+  .animateButton span {
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .animateButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: 0.5s;
+  }
+  
+  .animateButton:hover span {
+    padding-right: 25px;
+  }
+  
+  .animateButton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+/* start page  */
 
   #generateStartMessage{
     font-size: 25px;
   }
 
-  #fontFirstPage{
-    font-size: 45px;
+/* styles for questions page  */
+  form h2 {
+    max-width: 590px;
   }
 
   img {
@@ -179,12 +217,8 @@ label {
     margin-top: 0;
   }
 
-  form section {
-    margin-left: 50px;
-  }
-
-  button {
-    padding: 15px 32px;
+  label {
+    font-size: 20px;
   }
 
   footer{
@@ -195,9 +229,5 @@ label {
 
   #finalTitle{
     font-size: 80px;
-  }
-
-  #finalResultsMessage{
-    font-size: 30px;
   }
 }
