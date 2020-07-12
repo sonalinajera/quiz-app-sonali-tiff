@@ -6,6 +6,11 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Handlee&family=Just+Another+Hand&display=swap');
+
+/* general style rules shared among all views */
+
 html{
   margin: 0;
   height: 100%;
@@ -24,42 +29,72 @@ body{
   padding: 10px;
 }
 
-.flexgroupAnswerMargin, header{
-  margin-top: 50px;
-}
-
-.flexItem{
-  display: flex;
-  justify-content: center;
-}
-
-
 h1 {
   text-align: center;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 0;
   padding: 10px;
   color: #e71d36;
   font-family: 'Bungee Shade';
-  font-size: 30px;
+  font-size: 45px;
 }
 
 h2{
   letter-spacing: .75px;
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
   color: #042A2B;
   font-family: 'Just Another Hand'
 }
 
-main > p {
+button{
+  font-family: 'handlee';
+  background-color: #EF9339;
+  color: #FFF;
+  padding: 5px 10px;
+  border-radius: 10px;
+  left: 25%;
+  bottom: 65px;
+}
+
+form div {
+  text-align: center;
+}
+
+/* sets the styles for all pages except start page */
+.marginTop {
+  margin-top: 50px;
+}
+
+p {
   text-align: center;
   color: #333;
+  font-family: 'Handlee'
+}
+
+.centerImage{
+  display: flex;
+  justify-content: center;
+}
+
+img{
+  max-height: 150px;
+  max-width: 100%;
+  margin-top: 20px;
 }
 
 
-.fontHandlee{
-  font-family: 'Handlee';
+footer {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: .9em;
+  position: absolute;
+  bottom: 0;
 }
+
+
+/* styles for start page only */
 
 #generateStartMessage{
   font-family: 'Handlee';
@@ -67,35 +102,11 @@ main > p {
   font-weight: bolder;
 }
 
-.correctAnswer{
-  font-family: handlee;
-  color: #e71d36;
-  font-weight: bold;
-}
-#finalResults{
-  text-align: center;
-}
-img{
-  max-height: 200px;
-  max-width: 100%;
-  margin-top: 20px;
+.startImage {
+  margin-top: 0;
 }
 
-
-figure{
-  align-content: center;
-}
-
-/* image in view should be hidden until restart is clicked */
-
-.hideImage {
-  display: none;
-}
-
-#bulletedAnswersCSS{
-  font-family: handlee;
-  font-weight: 300;
-}
+/* styles for the Question page */
 
 form input {
   margin-right: 10px;
@@ -103,72 +114,120 @@ form input {
 
 label {
   color: #333;
+  font-family: 'handlee';
+  font-weight: 300;
   display: inline-flex;
+  margin-left: 30px;
+  margin-bottom: 5px;
 }
 
-.centerAnswers {
-  text-align: center;
-  margin-bottom: 50px;
+/* styles for the answer review pages */
+
+.correctAnswer{
+  color: #218380;
+  font-weight: bold;
 }
 
 .wrongAnswerPicked {
-  color: #218380;
-  font-family: handlee;
+  color: red;
 }
 
-button{
-  font-family: handlee;
-  background-color: #EF9339;
-  color: #FFF;
-  left: 25%;
-  bottom: 65px;
+/* styles final results page only  */
+
+.finalScoreContainers {
+  position: absolute;
+  top: 20%;
 }
 
-
-/* I feel rather than reletalive we should align the button to the end
-of the form container so it will always be to the left */
-form div, .centerButton {
-  /* position: relative;
-  left: 200px; */
-  text-align: center;
+#finalTitle{
+  font-family: 'Bungee Shade';
+  font-size: 40px;
+  color: #e71d36;
+  margin: 0;
 }
 
-footer {
-  width: auto;
-  display: flex;
-  justify-content: space-between;
-  font-size: .7em;
-  bottom: 0;
+#finalResultsScore{
+  font-size: 25px;
 }
 
 @media all and (min-width: 600px) {
+/* general styles  */
+  body {
+    border-left: solid #F9c535 40px;
+    border-right: solid #F9c535 40px;
+  }
 
   h1{
     font-size: 75px;
   }
 
+  h2 {
+    max-width: 760px;
+    font-size: 2em;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: #f8a047;
+    box-shadow: 4px 6px 10px 3px rgb(172, 169, 169);
+  }
+
+  .animateButton {
+    width: 200px;
+    transition: all 0.5s;
+  }
+  
+  /* styles css effects on hover */
+  .animateButton span {
+    cursor: pointer;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .animateButton span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: 0.5s;
+  }
+  
+  .animateButton:hover span {
+    padding-right: 25px;
+  }
+  
+  .animateButton:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
+/* start page  */
+
   #generateStartMessage{
     font-size: 25px;
   }
 
-  #fontFirstPage{
-    font-size: 45px;
+/* styles for questions page  */
+  form h2 {
+    max-width: 590px;
   }
- 
-  button {
-    padding: 15px 32px;
+
+  img {
+    max-height: 270px;
+    margin-top: 0;
+  }
+
+  label {
+    font-size: 20px;
   }
 
   footer{
+    width: 60%;
     font-size: 15px;
     justify-content: space-between;
   }
 
   #finalTitle{
     font-size: 80px;
-  }
-
-  #finalResultsMessage{
-    font-size: 30px;
   }
 }

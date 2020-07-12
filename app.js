@@ -56,13 +56,13 @@ const store = {
 
 function generateStartPage() {
 
-return `<h1> The Five Basic Tastes</h2>
+  return `<h1> The Five Basic Tastes</h2>
   <main class="flexgroup">
     <p id="generateStartMessage">Quiz yourself on how well you know your five basic tastes!</p>
     <figure>
-    <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
+    <img class="startImage" src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
     </figure>
-    <button id="startButton">Start Button!</button>
+    <button id="startButton" class="animateButton" ><span>Start Quiz! <span></button>
   </main>`;
 
 }
@@ -71,25 +71,27 @@ return `<h1> The Five Basic Tastes</h2>
 function generateQuestions() {
   let currentQuestion = getCurrentQuestionOptions();
   return (
-    `  <div>
+    `
+      <main class="marginTop" >
+        <figure class="centerImage">
+          <img src="${generateImageSrc()}" alt="${generateImageAlt()}">
+        </figure>
+        <form>
+          <h2>${getCurrentQuestionOptions()}</h2>
+          <section>
+          ${generateAnswers()}
+          </section>
+          <br>
+          <div><button class="button">Submit Answer</button></div>
+        </form>
 
-    <main>
+      </main>
 
-    <div class="flexItem"><img src="${generateImageSrc()}" alt="${generateImageAlt()}"></div>
-      <form>
-        <h2>${getCurrentQuestionOptions()}</h2>
-        ${generateAnswers()}
-        <br>
-         <div><button class="button">Next</button></div>
-      </form>
-
-    </main>
-
-    <footer class="fontHandlee">
+    <footer>
       <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score-1}</p>
       <p>Question ${getQuestionNumber()} of 5</p>
     </footer>`
-  )
+  );
 }
 
 function generateImageSrc(){
@@ -126,15 +128,15 @@ function getCurrentQuestionOptions(){
 function generateAnswers() {
   let answersArray = getCurrentAnswerOptions();
   return (answersArray.reduce((html, answer, i) =>
-    html + `<label id="bulletedAnswersCSS"> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
-    , ''))
+    html + `<label> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
+    , ''));
 }
 
 function getCurrentAnswerOptions(){
   let answerTemplate = store.quizTemplate;
   for (let i = 0; i < answerTemplate.length; i++){
     if ((store.questionNumber -1) === i){
-        return answerTemplate[i].answers;
+      return answerTemplate[i].answers;
     }
   }
 }
@@ -148,61 +150,54 @@ function generateReviewAnswers() {
 }
 
 function generateCorrectAnswerPage()  {
-  return ` <div>
-    <main>
+  return `
+    <main class="marginTop" >
+    <section>
       <h2>${getCurrentQuestionOptions()}</h2>
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p><img class="kermitGif" src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing"></p>
-      <p><button id="navToNextQuestion">Next</button></p>
+    <section>
+      <p><button id="navToNextQuestion">Next Question</button></p>
     </main>
 
-    <footer class="fontHandlee">
+    <footer>
     <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>
-    </div>`
+    </footer>`;
 }
 
 function generateIncorrectAnswerPage() {
-  return ` <div>
-    <main>
+  return `
+    <main class="marginTop">
+    <section>
       <h2>${getCurrentQuestionOptions()}</h2>
       <p class="wrongAnswerPicked">Your Answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">That wasn't it, better luck next time!<p>
       <p><img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands"></p>
-      <p><button id="navToNextQuestion">Next</button></p>
+    </section>
+      <p><button id="navToNextQuestion">Next Question</button></p>
     </main>
 
-    <footer class="fontHandlee">
+    <footer>
     <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>
-    </div>`
+    </footer>`;
 }
 
 //This function returns the results view
 function generateFinalResultsPage(){
-  return ` <main>
-    <div id="finalResults">
-    <h2 id="finalTitle">Final Results</h2>
-    <div id="finalResultsMessage">
-    <p class="fontHandlee"> ${store.score / 5 * 100} %</p>
-    <p class="fontHandlee">You got ${store.score} right out of 5</p>
-    </div>
-    <Figure class="hideImage">
-    <img src="images/grapefruit.png" alt="">
-    </Figure>
-    <button id="restart">Restart Quiz?</button>
-    
-  </div>
+  return ` <main class="finalScoreContainers">
 
+    <h2 id="finalTitle">Final Results</h2>
+    <section id="finalResultsScore">
+    <p> ${store.score / 5 * 100} %</p>
+    <p>You got ${store.score} right out of 5</p>
+    </section>
+    <p><button id="restart">Restart Quiz?</button></p>
   </main>`;
 }
-
-
-
 
 /********** RENDER FUNCTION(S) **********/
 
@@ -213,9 +208,6 @@ function generateFinalResultsPage(){
   //if user input is correct display correct page
   //if user input is incorrect display incorrect page
   // if user has answered the final question, display final results page
-
-
-
 
 function render() {
   let html = ``;
@@ -232,8 +224,6 @@ function render() {
 }
 
 
-
-
 /********** EVENT HANDLER FUNCTIONS **********/
 
 // These functions handle events (submit, click, etc)
@@ -248,6 +238,7 @@ function handleStartButtonSubmit() {
   });
 }
 // this function stores the index of the user answer selected
+
 function registerAnswerSubmission() {
   $('body').on('click','.button',function (event) {
     event.preventDefault();
@@ -259,10 +250,10 @@ function registerAnswerSubmission() {
       store.userAnsweredRight = true;
       render();
     } else if (store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)] === undefined) {
-      alert('You need to select an answer before continuing')
+       alert('You need to select an answer before continuing');
     } else {
-    render();
-  }
+      render();
+    }
   });
 }
 
@@ -280,13 +271,12 @@ function moveToNextQuestion () {
 function restartQuiz() {
   $('body').on('click', '#restart', function (event) {
     event.preventDefault();
-     store.userAnsweredRight = false;
-     store.submitedAnswer = '';
-     store.questionNumber = 0;
-     store.quizStarted = false;
-     store.score= 0;
-    render()
-    console.log('LAST BUTTON WORKS')
+    store.userAnsweredRight = false;
+    store.submitedAnswer = '';
+    store.questionNumber = 0;
+    store.quizStarted = false;
+    store.score= 0;
+    render();
   });
   
 }
