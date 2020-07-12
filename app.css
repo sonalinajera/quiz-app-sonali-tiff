@@ -9,7 +9,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Handlee&display=swap');
 
-/* general page layout rules  */
+/* general style rules shared among all views */
 
 html{
   margin: 0;
@@ -29,13 +29,6 @@ body{
   padding: 10px;
 }
 
- 
-.centerImage{
-  display: flex;
-  justify-content: center;
-}
-
-
 h1 {
   text-align: center;
   margin-top: 20px;
@@ -54,6 +47,20 @@ h2{
   font-family: 'Just Another Hand'
 }
 
+button{
+  font-family: 'handlee';
+  background-color: #EF9339;
+  color: #FFF;
+  padding: 5px 10px;
+  border-radius: 10px;
+  left: 25%;
+  bottom: 65px;
+}
+
+form div {
+  text-align: center;
+}
+
 /* sets the styles for all pages except start page */
 .marginTop {
   margin-top: 50px;
@@ -65,19 +72,9 @@ main > p, section > p {
   font-family: 'Handlee'
 }
 
-
-#generateStartMessage{
-  font-family: 'Handlee';
-  font-size: 20px;
-  font-weight: bolder;
-}
-
-.correctAnswer{
-  color: #218380;
-  font-weight: bold;
-}
-#finalResults{
-  text-align: center;
+.centerImage{
+  display: flex;
+  justify-content: center;
 }
 
 img{
@@ -86,10 +83,30 @@ img{
   margin-top: 20px;
 }
 
-figure{
-  align-content: center;
+
+footer {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  font-size: .9em;
+  position: absolute;
+  bottom: 0;
 }
 
+
+/* styles for start page only */
+
+#generateStartMessage{
+  font-family: 'Handlee';
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.startImage {
+  margin-top: 0;
+}
+
+/* styles for the Question page */
 
 form input {
   margin-right: 10px;
@@ -101,38 +118,26 @@ label {
   font-weight: 300;
   display: inline-flex;
   margin-left: 30px;
+  margin-bottom: 5px;
+}
+
+/* styles for the answer review pages */
+
+.correctAnswer{
+  color: #218380;
+  font-weight: bold;
 }
 
 .wrongAnswerPicked {
   color: red;
 }
 
-button{
-  font-family: 'handlee';
-  background-color: #EF9339;
-  color: #FFF;
-  left: 25%;
-  bottom: 65px;
-}
+/* styles final results page only  */
 
-
-/* I feel rather than reletalive we should align the button to the end
-of the form container so it will always be to the left */
-form div, .centerButton {
-  /* position: relative;
-  left: 200px; */
-  text-align: center;
-}
-
-footer {
-  width: 80%;
-  display: flex;
-  justify-content: space-between;
-  font-size: .9em;
+.finalScoreContainers {
   position: absolute;
-  bottom: 0;
+  top: 20%;
 }
-
 
 #finalTitle{
   font-family: 'Bungee Shade';
@@ -145,22 +150,20 @@ footer {
   font-size: 25px;
 }
 
-.finalScoreContainers {
-  position: absolute;
-  top: 20%;
-}
-
 @media all and (min-width: 600px) {
+
   body {
     border-left: solid #F9c535 40px;
     border-right: solid #F9c535 40px;
   }
+
   h1{
     font-size: 75px;
   }
 
-  h2 {
-    max-width: 900px;
+  form h2 {
+    max-width: 590px;
+    font-size: 1.7em;
   }
 
   #generateStartMessage{
@@ -170,7 +173,16 @@ footer {
   #fontFirstPage{
     font-size: 45px;
   }
- 
+
+  img {
+    max-height: 270px;
+    margin-top: 0;
+  }
+
+  form section {
+    margin-left: 50px;
+  }
+
   button {
     padding: 15px 32px;
   }
