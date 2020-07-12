@@ -57,7 +57,7 @@ const store = {
 function generateStartPage() {
   $('header h1').text('Taste Test')
   $('main').html(`<main class="flexgroup">
-  <p class="fontHandlee">How well do you know the five basic tastes?</p>
+  <p id="fontFirstPage">How well do you know the five basic tastes?</p>
   <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
   </figure>
@@ -158,7 +158,7 @@ function generateCorrectAnswerPage()  {
       <h2>${sampleQuestions()}</h2>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
-      <img src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
+      <img class="kermitGif" src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
       <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
     </main>
 

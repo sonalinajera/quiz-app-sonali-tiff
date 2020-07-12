@@ -57,6 +57,12 @@ main > p {
   font-family: 'Handlee';
 }
 
+#fontFirstPage{
+  font-family: 'Handlee';
+  font-size: 25px;
+  font-weight: bolder;
+}
+
 .correctAnswer{
   font-family: handlee;
   color: #e71d36;
@@ -127,5 +133,16 @@ footer {
   body {
     display: flex;
     flex-direction: column;
+  }
+
+  h1{
+    font-size: 100px;
+  }
+  h2{
+    font-size: 50px;
+  }
+
+  #fontFirstPage{
+    font-size: 45px;
   }
 }
