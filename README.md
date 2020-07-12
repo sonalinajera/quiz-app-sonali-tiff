@@ -22,4 +22,5 @@
 <p>Some minor style changes may happen and we'll update these views when enough of them accumulate</p>
 <p>Mobile View</p>
 
+<p><img alt="A screenshot of the app start view page with the tile, and start button" src="images/startView.png" /></p>
 
