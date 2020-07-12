@@ -76,6 +76,7 @@ main > p {
   text-align: center;
 }
 img{
+  max-height: 200px;
   max-width: 100%;
   margin-top: 20px;
 }
@@ -123,9 +124,6 @@ button{
   bottom: 65px;
 }
 
-.kermitGif{
-  width: 50%;
-}
 
 /* I feel rather than reletalive we should align the button to the end
 of the form container so it will always be to the left */
@@ -155,7 +153,7 @@ footer {
   #fontFirstPage{
     font-size: 45px;
   }
-
+ 
   button {
     padding: 15px 32px;
   }
