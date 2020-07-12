@@ -6,6 +6,11 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Handlee&display=swap');
+
+/* general page layout rules  */
+
 html{
   margin: 0;
   height: 100%;
@@ -24,11 +29,8 @@ body{
   padding: 10px;
 }
 
-.flexgroupAnswerMargin, header{
-  margin-top: 50px;
-}
-
-.flexItem{
+ 
+.centerImage{
   display: flex;
   justify-content: center;
 }
@@ -36,30 +38,33 @@ body{
 
 h1 {
   text-align: center;
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 0;
   padding: 10px;
   color: #e71d36;
   font-family: 'Bungee Shade';
-  font-size: 30px;
+  font-size: 45px;
 }
 
 h2{
   letter-spacing: .75px;
-  font-size: 30px;
+  font-size: 22px;
   text-align: center;
   color: #042A2B;
   font-family: 'Just Another Hand'
 }
 
-main > p {
+/* sets the styles for all pages except start page */
+.marginTop {
+  margin-top: 50px;
+}
+
+main > p, section > p {
   text-align: center;
   color: #333;
+  font-family: 'Handlee'
 }
 
-
-.fontHandlee{
-  font-family: 'Handlee';
-}
 
 #generateStartMessage{
   font-family: 'Handlee';
@@ -68,34 +73,23 @@ main > p {
 }
 
 .correctAnswer{
-  font-family: handlee;
-  color: #e71d36;
+  color: #218380;
   font-weight: bold;
 }
 #finalResults{
   text-align: center;
 }
+
 img{
-  max-height: 200px;
+  max-height: 150px;
   max-width: 100%;
   margin-top: 20px;
 }
-
 
 figure{
   align-content: center;
 }
 
-/* image in view should be hidden until restart is clicked */
-
-.hideImage {
-  display: none;
-}
-
-#bulletedAnswersCSS{
-  font-family: handlee;
-  font-weight: 300;
-}
 
 form input {
   margin-right: 10px;
@@ -103,21 +97,18 @@ form input {
 
 label {
   color: #333;
+  font-family: 'handlee';
+  font-weight: 300;
   display: inline-flex;
-}
-
-.centerAnswers {
-  text-align: center;
-  margin-bottom: 50px;
+  margin-left: 30px;
 }
 
 .wrongAnswerPicked {
-  color: #218380;
-  font-family: handlee;
+  color: red;
 }
 
 button{
-  font-family: handlee;
+  font-family: 'handlee';
   background-color: #EF9339;
   color: #FFF;
   left: 25%;
@@ -134,17 +125,42 @@ form div, .centerButton {
 }
 
 footer {
-  width: auto;
+  width: 80%;
   display: flex;
   justify-content: space-between;
-  font-size: .7em;
+  font-size: .9em;
+  position: absolute;
   bottom: 0;
 }
 
-@media all and (min-width: 600px) {
 
+#finalTitle{
+  font-family: 'Bungee Shade';
+  font-size: 40px;
+  color: #e71d36;
+  margin: 0;
+}
+
+#finalResultsScore{
+  font-size: 25px;
+}
+
+.finalScoreContainers {
+  position: absolute;
+  top: 20%;
+}
+
+@media all and (min-width: 600px) {
+  body {
+    border-left: solid #F9c535 40px;
+    border-right: solid #F9c535 40px;
+  }
   h1{
     font-size: 75px;
+  }
+
+  h2 {
+    max-width: 900px;
   }
 
   #generateStartMessage{
@@ -160,6 +176,7 @@ footer {
   }
 
   footer{
+    width: 60%;
     font-size: 15px;
     justify-content: space-between;
   }
