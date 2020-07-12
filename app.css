@@ -44,7 +44,8 @@ h1 {
 }
 
 h2{
-  font-size: 25px;
+  letter-spacing: .75px;
+  font-size: 30px;
   text-align: center;
   color: #042A2B;
   font-family: 'Just Another Hand'
@@ -52,7 +53,7 @@ h2{
 
 main > p {
   text-align: center;
-  color: #77777A;
+  color: #333;
 }
 
 
@@ -76,7 +77,9 @@ main > p {
 }
 img{
   max-width: 100%;
+  margin-top: 20px;
 }
+
 
 figure{
   align-content: center;
@@ -98,7 +101,7 @@ form input {
 }
 
 label {
-  color: #77777A;
+  color: #333;
   display: inline-flex;
 }
 
@@ -129,10 +132,12 @@ form div, .centerButton {
 }
 
 footer {
-  width: auto;
+  width: 80%;
   display: flex;
   justify-content: space-between;
   font-size: .7em;
+  bottom: 0;
+  position: absolute;
 }
 
 @media all and (min-width: 600px) {
@@ -155,5 +160,9 @@ footer {
   footer{
     font-size: 15px;
     justify-content: space-between;
+  }
+
+  .kermitGif{
+    text-align: center;
   }
 }
