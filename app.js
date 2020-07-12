@@ -54,6 +54,7 @@ const store = {
 
 // These functions return HTML templates
 
+//This function returns the start page
 function generateStartPage() {
 
   return `<h1> The Five Basic Tastes</h2>
