@@ -57,7 +57,7 @@ const store = {
 function generateStartPage() {
 
 return `<h1> The Five Basic Tastes</h2>
-  <main class="flexgroup"> =----6yt
+  <main class="flexgroup">
     <p>Quiz yourself on how well you know your five basic tastes!</p>
     <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
@@ -98,7 +98,7 @@ function generateImageAlt(){
 function generateAnswers() {
   let answersArray = sampleAnswers();
   return (answersArray.reduce((html, answer, i) =>
-    html + `<label> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
+    html + `<label id="bulletedAnswersCSS"> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
     , ''))
 }
 
@@ -126,7 +126,7 @@ function sampleQuestions(){
 function generateQuestions() {
   let currentQuestion = sampleQuestions();
   return (
-    `  <div class="flexgroup">
+    `  <div>
 
     <main>
 
@@ -155,7 +155,7 @@ function generateReviewAnswers() {
 }
 
 function generateCorrectAnswerPage()  {
-  return ` <div class="flexgroup">
+  return ` <div>
     <main>
       <h2>${sampleQuestions()}</h2>
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
@@ -175,7 +175,7 @@ function generateCorrectAnswerPage()  {
 
 
 function generateIncorrectAnswerPage() {
-  return ` <div class="flexgroup">
+  return ` <div>
     <main>
       <h2>${sampleQuestions()}</h2>
       <p class="wrongAnswerPicked">Your Answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
@@ -195,7 +195,7 @@ function generateIncorrectAnswerPage() {
 
 function generateFinalResultsPage(){
   return ` <main>
-    <div class="flexgroup flexgroupAnswerMargin">
+    <div id="finalResults">
     <h2>Final Results</h2>
     <p class="fontHandlee"> ${store.score / 5 * 100} %</p>
 

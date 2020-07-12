@@ -7,18 +7,20 @@
   *
 */
 html{
-  border-left: solid #F9c535 20px;
-  border-right: solid #F9c535 20px;
   margin: 0;
   height: 100%;
 }
 
+body{
+  border-left: solid #F9c535 20px;
+  border-right: solid #F9c535 20px;
+  height: 100%;
+}
 
 .flexgroup{
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
   padding: 10px;
 }
 
@@ -53,6 +55,7 @@ main > p {
   color: #77777A;
 }
 
+
 .fontHandlee{
   font-family: 'Handlee';
 }
@@ -68,7 +71,9 @@ main > p {
   color: #e71d36;
   font-weight: bold;
 }
-
+#finalResults{
+  text-align: center;
+}
 img{
   max-width: 100%;
 }
@@ -81,6 +86,11 @@ figure{
 
 .hideImage {
   display: none;
+}
+
+#bulletedAnswersCSS{
+  font-family: handlee;
+  font-weight: 300;
 }
 
 form input {
@@ -108,7 +118,6 @@ button{
   color: #FFF;
   left: 25%;
   bottom: 65px;
-  width: 50%;
 }
 
 /* I feel rather than reletalive we should align the button to the end
@@ -124,6 +133,8 @@ footer {
   display: flex;
   justify-content: space-between;
   font-size: .7em;
+  bottom: 0;
+  position: absolute;
 }
 
 @media all and (min-width: 600px) {
