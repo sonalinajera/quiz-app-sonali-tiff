@@ -130,7 +130,7 @@ footer {
 }
 
 @media all and (min-width: 600px) {
-  body {
+  b/ody {
     display: flex;
     flex-direction: column;
   }
