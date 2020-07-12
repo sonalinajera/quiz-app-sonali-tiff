@@ -14,7 +14,6 @@ const store = {
     {
       question: "What stage in life does one have the strongest ability to taste sweet foods?",
       answers: ['Infancy', 'Puberty', 'Adulthood'],
-      // update correct answer from string to number value, then compare index answer picked to correct answer value
       correctAnswer: 0,
       image: [`images/cake.png`, `A watercolor drawing of a piece of cake`]
     },
@@ -46,8 +45,9 @@ const store = {
   quizStarted: false,
   submitedAnswer: '',
   userAnsweredRight: false,
-  questionNumber: 0, //ea click = questionNumber++
+  questionNumber: 0,
   score: 0
+
 };
 
 
@@ -69,6 +69,30 @@ return `<h1> The Five Basic Tastes</h2>
 
 }
 
+//This function returns the questions view
+function generateQuestions() {
+  let currentQuestion = getCurrentQuestionOptions();
+  return (
+    `  <div>
+
+    <main>
+
+    <div class="flexItem"><img src="${generateImageSrc()}" alt="${generateImageAlt()}"></div>
+      <form>
+        <h2>${getCurrentQuestionOptions()}</h2>
+        ${generateAnswers()}
+        <br>
+         <div><button class="button">Next</button></div>
+      </form>
+
+    </main>
+
+    <footer class="fontHandlee">
+      <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
+      <p>Question ${getQuestionNumber()} of 5</p>
+    </footer>`
+  )
+}
 
 function generateImageSrc(){
   let imageSrc = ""; 
@@ -92,26 +116,7 @@ function generateImageAlt(){
   return imageAlt;
 }
 
-
-
-
-function generateAnswers() {
-  let answersArray = sampleAnswers();
-  return (answersArray.reduce((html, answer, i) =>
-    html + `<label id="bulletedAnswersCSS"> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
-    , ''))
-}
-
-function sampleAnswers(){
-  let answerTemplate = store.quizTemplate;
-  for (let i = 0; i < answerTemplate.length; i++){
-    if ((store.questionNumber -1) === i){
-        return answerTemplate[i].answers;
-    }
-  }
-}
-
-function sampleQuestions(){
+function getCurrentQuestionOptions(){
   let questionTemplate = store.quizTemplate;
   for (let i = 0; i < questionTemplate.length; i++){
     if ((store.questionNumber - 1) === i){
@@ -120,33 +125,23 @@ function sampleQuestions(){
   }
 }
 
-
-//input: Single question from arr matching page #
-//output: render question page view
-function generateQuestions() {
-  let currentQuestion = sampleQuestions();
-  return (
-    `  <div>
-
-    <main>
-
-    <div class="flexItem"><img src="${generateImageSrc()}" alt="${generateImageAlt()}"></div>
-      <form>
-        <h2>${sampleQuestions()}</h2>
-        ${generateAnswers()}
-        <br>
-         <div><button class="button">Next</button></div>
-      </form>
-
-    </main>
-
-    <footer class="fontHandlee">
-      <p>${store.score} right out of 5</p>
-      <p>Question ${getQuestionNumber()} of 5</p>
-    </footer>`
-  )
+function generateAnswers() {
+  let answersArray = getCurrentAnswerOptions();
+  return (answersArray.reduce((html, answer, i) =>
+    html + `<label id="bulletedAnswersCSS"> <input name="option" type="radio" value="${i}" required="required">${answer} </label><br>`
+    , ''))
 }
 
+function getCurrentAnswerOptions(){
+  let answerTemplate = store.quizTemplate;
+  for (let i = 0; i < answerTemplate.length; i++){
+    if ((store.questionNumber -1) === i){
+        return answerTemplate[i].answers;
+    }
+  }
+}
+
+//This function returns answers view
 function generateReviewAnswers() {
   if(store.userAnsweredRight === true) {
     return generateCorrectAnswerPage();
@@ -157,7 +152,7 @@ function generateReviewAnswers() {
 function generateCorrectAnswerPage()  {
   return ` <div>
     <main>
-      <h2>${sampleQuestions()}</h2>
+      <h2>${getCurrentQuestionOptions()}</h2>
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <img class="kermitGif" src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
@@ -165,19 +160,16 @@ function generateCorrectAnswerPage()  {
     </main>
 
     <footer class="fontHandlee">
-    <p>${store.score} out of 5</p>
+    <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
     </div>`
 }
 
-
-
-
 function generateIncorrectAnswerPage() {
   return ` <div>
     <main>
-      <h2>${sampleQuestions()}</h2>
+      <h2>${getCurrentQuestionOptions()}</h2>
       <p class="wrongAnswerPicked">Your Answer: ${store.quizTemplate[store.questionNumber - 1].answers[parseInt(store.submitedAnswer)]}</p>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">That wasn't it, better luck next time!<p>
@@ -186,13 +178,13 @@ function generateIncorrectAnswerPage() {
     </main>
 
     <footer class="fontHandlee">
-    <p>${store.score} right out of 5</p>
+    <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
     </div>`
 }
 
-
+//This function returns the results view
 function generateFinalResultsPage(){
   return ` <main>
     <div id="finalResults">
@@ -308,51 +300,5 @@ function getQuestionNumber() {
   return store.questionNumber;
 }
 
-
-
-//data model vqu
-
-
-
-
-// renderQuestion() //pulls view to code
-// generateQuestion() //brings proper question to view
-// countPageNumber() // counts page user is on
-// updateUserScore() // counts total correct vs incorrect
-// checkUserInputButton() // next button brings user to answer page
-// isAnswerCorrect() // tests checkUserInput() if true return correctAnswerPage else return incorrectAnswerPage
-// correctAnswerPage() // displays html for correct page and calls countPageNumber() & updateUserScore
-// inccorectAnswerPage // displays html for incorrect page and calls countPageNumber() & updateUserScore
-// finalQuestionCheck() // button that determines whether user will move forward to next question or results page
-// displayFinalResults() // user see results view with total score 
-// restartButton() // user can restart quiz 
-
-
-/**
- * 
- * Technical requirements:
- * 
- * Your app should include a render() function, that regenerates the view each time the store is updated. 
- * See your course material, consult your instructor, and reference the slides for more details.
- *
- * NO additional HTML elements should be added to the index.html file.
- *
- * You may add attributes (classes, ids, etc) to the existing HTML elements, or link stylesheets or additional scripts if necessary
- *
- * SEE BELOW FOR THE CATEGORIES OF THE TYPES OF FUNCTIONS YOU WILL BE CREATING 👇
- * 
- */
-
-/********** TEMPLATE GENERATION FUNCTIONS **********/
-
-// These functions return HTML templates
-
-/********** RENDER FUNCTION(S) **********/
-
-// This function conditionally replaces the contents of the <main> tag based on the state of the store
-
-/********** EVENT HANDLER FUNCTIONS **********/
-
-// These functions handle events (submit, click, etc)
 
 $(main);
