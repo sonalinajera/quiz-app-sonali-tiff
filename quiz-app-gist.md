@@ -1,3 +1,5 @@
+Quiz App built by Tiffany and Sonali
+
 Napkin model of app flow
 
 <img width="423" alt="Screen Shot 2020-07-08 at 4 51 48 PM" src="https://user-images.githubusercontent.com/65439450/86981730-48b15080-c13c-11ea-84d4-28cc741115e9.png">
