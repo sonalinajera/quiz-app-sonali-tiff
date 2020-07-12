@@ -61,7 +61,7 @@ main > p {
   font-family: 'Handlee';
 }
 
-#fontFirstPage{
+#generateStartMessage{
   font-family: 'Handlee';
   font-size: 25px;
   font-weight: bolder;
@@ -144,11 +144,11 @@ footer {
 @media all and (min-width: 600px) {
 
   h1{
-    font-size: 100px;
+    font-size: 75px;
   }
-  h2{
-    font-size: 50px;
-    max-width: 600px;
+
+  #generateStartMessage{
+    font-size: 25px;
   }
 
   #fontFirstPage{
@@ -162,5 +162,13 @@ footer {
   footer{
     font-size: 15px;
     justify-content: space-between;
+  }
+
+  #finalTitle{
+    font-size: 80px;
+  }
+
+  #finalResultsMessage{
+    font-size: 30px;
   }
 }

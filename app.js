@@ -58,7 +58,7 @@ function generateStartPage() {
 
 return `<h1> The Five Basic Tastes</h2>
   <main class="flexgroup">
-    <p class="fontHandlee">Quiz yourself on how well you know your five basic tastes!</p>
+    <p id="generateStartMessage">Quiz yourself on how well you know your five basic tastes!</p>
     <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
     </figure>
@@ -186,16 +186,14 @@ function generateIncorrectAnswerPage() {
 function generateFinalResultsPage(){
   return ` <main>
     <div id="finalResults">
-    <h2>Final Results</h2>
+    <h2 id="finalTitle">Final Results</h2>
+    <div id="finalResultsMessage">
     <p class="fontHandlee"> ${store.score / 5 * 100} %</p>
-
     <p class="fontHandlee">You got ${store.score} right out of 5</p>
-
-    <!--Restart meme / maybe find back up image, this image should be hidden and only appear when submit is clicked, then after X seconds redirect to intro page-->
+    </div>
     <Figure class="hideImage">
     <img src="images/grapefruit.png" alt="">
     </Figure>
-<!-- maybe we can change the text after the button is pressed once to 'here we go' or something  -->
     <button id="restart">Restart Quiz?</button>
     
   </div>
