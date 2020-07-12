@@ -40,7 +40,7 @@ h1 {
   padding: 10px;
   color: #e71d36;
   font-family: 'Bungee Shade';
-  font-size: 50px;
+  font-size: 30px;
 }
 
 h2{
@@ -63,7 +63,7 @@ main > p {
 
 #generateStartMessage{
   font-family: 'Handlee';
-  font-size: 25px;
+  font-size: 20px;
   font-weight: bolder;
 }
 

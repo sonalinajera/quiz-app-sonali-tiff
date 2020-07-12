@@ -86,7 +86,7 @@ function generateQuestions() {
     </main>
 
     <footer class="fontHandlee">
-      <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
+      <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score-1}</p>
       <p>Question ${getQuestionNumber()} of 5</p>
     </footer>`
   )
@@ -158,7 +158,7 @@ function generateCorrectAnswerPage()  {
     </main>
 
     <footer class="fontHandlee">
-    <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
+    <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
     </div>`
@@ -176,7 +176,7 @@ function generateIncorrectAnswerPage() {
     </main>
 
     <footer class="fontHandlee">
-    <p>Correct = ${store.score} Incorrect =${store.questionNumber-store.score}</p>
+    <p>Correct = ${store.score} Incorrect = ${store.questionNumber-store.score}</p>
     <p>Question ${getQuestionNumber()} of 5</p>
     </footer>
     </div>`
