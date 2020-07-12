@@ -58,13 +58,11 @@ function generateStartPage() {
 
 return `<h1> The Five Basic Tastes</h2>
   <main class="flexgroup">
-    <p>Quiz yourself on how well you know your five basic tastes!</p>
+    <p class="fontHandlee">Quiz yourself on how well you know your five basic tastes!</p>
     <figure>
     <img src="images/flavor-wheel.jpg" alt="Wheel of taste buds">
     </figure>
-    <div>
-      <button id="startButton">Start Button!</button>
-   </div>
+    <button id="startButton">Start Button!</button>
   </main>`;
 
 }
@@ -156,7 +154,7 @@ function generateCorrectAnswerPage()  {
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p><img class="kermitGif" src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing"></p>
-      <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
+      <p><button id="navToNextQuestion">Next</button></p>
     </main>
 
     <footer class="fontHandlee">
@@ -174,7 +172,7 @@ function generateIncorrectAnswerPage() {
       <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">That wasn't it, better luck next time!<p>
       <p><img src="images/kermit-no.gif" alt="A gif of Kermit the Frog shaking his head no and bitting his muppet hands"></p>
-      <button id="navToNextQuestion">Next</button>
+      <p><button id="navToNextQuestion">Next</button></p>
     </main>
 
     <footer class="fontHandlee">
