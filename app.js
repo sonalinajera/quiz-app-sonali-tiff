@@ -158,8 +158,8 @@ function generateCorrectAnswerPage()  {
   return ` <div class="flexgroup">
     <main>
       <h2>${sampleQuestions()}</h2>
-      <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <p class="fontHandlee">Congrats, you did kermit proud! </p>
+      <p class="correctAnswer">Correct Answer: ${store.quizTemplate[store.questionNumber - 1].answers[store.quizTemplate[store.questionNumber - 1].correctAnswer]}</p>
       <img class="kermitGif" src="images/kermit-dance.gif" alt="A gif of Kermit the Frog dancing">
       <div class="centerButton"><button id="navToNextQuestion">Next</button><div>
     </main>
