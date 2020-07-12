@@ -21,6 +21,13 @@
 <h3>Screenshots</h3>
 <p>Some minor style changes may happen and we'll update these views when enough of them accumulate</p>
 <p>Mobile View</p>
-
-<p><img alt="A screenshot of the app start view page with the tile, and start button" src="images/startView.png" /></p>
-
+<p>Initial view</p>
+<p><img alt="A screenshot of the app Start view page with the tile, and start button" src="images/startView.png" /></p>
+<p>Questions View</p>
+<p><img alt="A screenshot of the app Questions view page with the question, answer options and submit button" src="images/questionView.png" /></p>
+<p>Right Answer View</p>
+<p><img alt="A screenshot of the app Right Answer view page with the question, right answer, a celebratory message and a next button" src="images/rightAnswerView.png" /></p>
+<p>Wrong Answer View</p>
+<p><img alt="A screenshot of the app Wrong Answer view page with the wrong and right answer, and a next button" src="images/wrongAnswerView.png" /></p>
+<p>Bad Answer View</p>
+<p><img alt="A screenshot of the app Final Score view page with the final score and a restart button" src="images/finalScoreView.png" /></p>
